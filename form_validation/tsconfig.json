@@ -12,5 +12,6 @@
     "removeComments": true,
     "typeRoots": ["./node_modules/@types"]
   },
-  "files": ["src/index/"]
+  "include": ["src/index.tsx"],
+  "exclude": ["src/_develop"]
 }

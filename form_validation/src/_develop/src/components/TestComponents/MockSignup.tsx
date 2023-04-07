@@ -1,10 +1,13 @@
-import * as React from 'react';
-import Checkbox from '../FormComponents/Checkbox';
-import DatePicker from '../FormComponents/DatePicker';
-import Form from '../FormComponents/Form';
-import Input from '../FormComponents/Input';
-import RadioButtons from '../FormComponents/RadioButtons';
-import Select from '../FormComponents/Select';
+import * as React from 'react'
+
+import {
+  Checkbox,
+  DatePicker,
+  Form,
+  Input,
+  RadioButtons,
+  Select,
+} from '../../../../index'
 
 export default function MockSignup(): JSX.Element {
   const formStyles = {
@@ -17,7 +20,7 @@ export default function MockSignup(): JSX.Element {
     labelTextColor: 'lime',
     errorColor: 'red',
     successColor: 'orange',
-  };
+  }
 
   const [user, setUser] = React.useState<any>({
     firstName: '',
@@ -33,7 +36,7 @@ export default function MockSignup(): JSX.Element {
     gender: '',
     food: '',
     tos: false,
-  });
+  })
 
   return (
     <div className="row" style={{ padding: '4rem' }}>
@@ -204,7 +207,7 @@ export default function MockSignup(): JSX.Element {
               { id: 'food2', label: 'Lobster', value: 'lobster' },
               { id: 'food3', label: 'Sushi', value: 'sushi' },
             ]}
-            onChange={(v: string) =>
+            onChange={(v: any) =>
               setUser((prev: {}) => ({ ...prev, ['food']: v }))
             }
           />
@@ -229,5 +232,5 @@ export default function MockSignup(): JSX.Element {
         </Form>
       </div>
     </div>
-  );
+  )
 }

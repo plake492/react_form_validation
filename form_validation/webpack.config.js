@@ -1,14 +1,9 @@
-const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.tsx',
+  entry: './src/_develop/src/index.tsx',
   devtool: 'inline-source-map',
-  output: {
-    path: path.join(__dirname, '/TEST__LIB'),
-    chunkFilename: '[name].js',
-    filename: '[name].js',
-  },
   devServer: {
     port: 8001,
     open: true,
@@ -27,7 +22,7 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.scss$/,
+        test: /\.(sc|c)ss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
@@ -35,4 +30,10 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/_develop/public/index.html',
+      hash: true,
+    }),
+  ],
 }

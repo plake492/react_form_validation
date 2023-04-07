@@ -1,19 +1,19 @@
-import * as React from 'react';
-import { useBemify } from '../../../hooks/useBemify';
-import { isDOMTypeElement } from '../../../utils/detectReactComponents';
-import { forceArray } from '../../../utils/helpers';
-import FieldLabel from '../../BaseComponents/FieldLabel';
+import * as React from 'react'
+import { useBemify } from '../../../hooks/useBemify'
+import { isDOMTypeElement } from '../../../utils/detectReactComponents'
+import { forceArray } from '../../../utils/helpers'
+import FieldLabel from '../../BaseComponents/FieldLabel'
 import {
   IsIvalidErrorMessage,
   PasswordMatchErrorMessage,
   RequiredFieldErrorMessage,
-} from '../../BaseComponents/FormMessages';
-import { useConfirmPasswordMatch } from '../../../hooks/useConfirmPasswordMatch';
-import { useFormFieldsValidation } from '../../../hooks/useFormFieldsValidation';
-import { useStyleForm } from '../../../hooks/useStyleForm';
-import { FormPropTypes, InputPropTypes } from '../../../types';
-import { validFormComponentChildren } from '../../../utils/validFormComponentChildren';
-import { setStyles } from '../../../utils/styleVars';
+} from '../../BaseComponents/FormMessages'
+import { useConfirmPasswordMatch } from '../../../hooks/useConfirmPasswordMatch'
+import { useFormFieldsValidation } from '../../../hooks/useFormFieldsValidation'
+import { useStyleForm } from '../../../hooks/useStyleForm'
+import { FormPropTypes, InputPropTypes } from '../../../types'
+import { validFormComponentChildren } from '../../../utils/validFormComponentChildren'
+import { setStyles } from '../../../utils/styleVars'
 
 export default function Form({
   children,
@@ -40,7 +40,7 @@ export default function Form({
     updatePasswordValue,
     handlePasswordsMatch,
     passwordIDs,
-  } = useConfirmPasswordMatch({ children, excludeFieldFromConfirmPassword });
+  } = useConfirmPasswordMatch({ children, excludeFieldFromConfirmPassword })
 
   // Handles input and form validation
   const {
@@ -49,51 +49,51 @@ export default function Form({
     containesValidationError,
     checkFieldValidation,
     formItemValues,
-  } = useFormFieldsValidation({ children });
+  } = useFormFieldsValidation({ children })
 
-  const formRef = React.useRef();
-  useStyleForm({ formRef, styleOptions });
+  const formRef = React.useRef()
+  useStyleForm({ formRef, styleOptions })
 
   // Set up function for handling styles
-  const bem: Function = useBemify('form');
+  const bem: Function = useBemify('form')
 
-  const [formError, setFormError] = React.useState<boolean>(false);
+  const [formError, setFormError] = React.useState<boolean>(false)
   const [formSubmissionAttempted, setFormSubmitionAttemp] =
-    React.useState<boolean>(false);
+    React.useState<boolean>(false)
 
   React.useEffect((): void => {
     if (formError) {
       setFormError(
         missingRequiredValue || containesValidationError || passwordMatchError
-      );
+      )
     }
-  }, [containesValidationError, passwordMatchError]);
+  }, [containesValidationError, passwordMatchError])
 
   // Add a unique id that can be common to all form fields
-  const reactId: string = React.useId();
-  const formGroupId: string = formId ? formId + reactId : reactId;
+  const reactId: string = React.useId()
+  const formGroupId: string = formId ? formId + reactId : reactId
 
   /**
    * Validate the child prop requiremnts.
    * Run the onSubmit function prop
    */
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
-    event.preventDefault();
+    event.preventDefault()
     // Set attempted submit flag on
-    setFormSubmitionAttemp(true);
+    setFormSubmitionAttemp(true)
 
     const formIsInvalid: boolean =
-      missingRequiredValue || containesValidationError || passwordMatchError;
+      missingRequiredValue || containesValidationError || passwordMatchError
 
     // Set the error state
-    setFormError(formIsInvalid);
+    setFormError(formIsInvalid)
 
     // Call the submit callback and pass the event, and the validation state
-    onSubmit(event, !formIsInvalid);
-  };
+    onSubmit(event, !formIsInvalid)
+  }
 
   // Force children to be an array
-  const elements: React.ReactElement[] = forceArray(children);
+  const elements: React.ReactElement[] = forceArray(children)
 
   const gapClass =
     rowGap && colGap
@@ -102,7 +102,7 @@ export default function Form({
       ? `g-row-${rowGap} g-col-${gap}`
       : gap && !rowGap && colGap
       ? `g-col-${colGap} g-row-${gap}`
-      : `g-${gap}`;
+      : `g-${gap}`
 
   return (
     <form
@@ -130,8 +130,8 @@ export default function Form({
             col = 12,
             breakpoint,
             styleConfig,
-          }: InputPropTypes = el.props;
-
+          }: InputPropTypes = el.props
+          console.log('label ==>', label)
           /**
            * If child is not a react component,
            * or if it's not on the list of
@@ -146,22 +146,22 @@ export default function Form({
               <React.Fragment key={index}>
                 {React.cloneElement(el)}
               </React.Fragment>
-            );
+            )
           }
 
           // Track if input has been selected and then unselected
-          const [isTouched, setIsTouched] = React.useState<boolean>(false);
+          const [isTouched, setIsTouched] = React.useState<boolean>(false)
 
           // If needed, update the value of the password validation object
           if (checkIfPasswordMatchIsNeeded({ id })) {
-            updatePasswordValue({ id, value });
+            updatePasswordValue({ id, value })
           }
 
           // ************** VALIDATON **************//
-          let isValid: boolean = true;
+          let isValid: boolean = true
 
           if (isRequired || shouldValidate) {
-            updateRequiredFieldValue({ id, value });
+            updateRequiredFieldValue({ id, value })
 
             isValid = checkFieldValidation({
               id,
@@ -171,57 +171,57 @@ export default function Form({
               shouldValidate,
               isRequired,
               type,
-            });
+            })
           }
 
           const requiredFieldError: boolean =
             formSubmissionAttempted &&
             isRequired &&
             !!formItemValues[id] &&
-            !formItemValues[id].value;
+            !formItemValues[id].value
 
           // ************** ADDITIONAL PROPS ************* //
           // Add additional logic to onBlur
           const onBlurProp = (e: React.FocusEvent<HTMLInputElement>): void => {
-            e.stopPropagation();
+            e.stopPropagation()
 
-            setIsTouched(true);
+            setIsTouched(true)
 
             // Check if password match vaidation is needed
             if (checkIfPasswordMatchIsNeeded({ id })) {
-              handlePasswordMatchOnBlur({ id, value });
+              handlePasswordMatchOnBlur({ id, value })
             }
 
-            onBlur && onBlur(e);
-          };
+            onBlur && onBlur(e)
+          }
 
           // Add additional logic to onChange
           const onChangeProp = (value: string | number, e?: any): void => {
             // Check if password match vaidation is needed
             if (checkIfPasswordMatchIsNeeded({ id })) {
-              handlePasswordsMatch({ id, value });
+              handlePasswordsMatch({ id, value })
             }
-            return onChange && onChange(value, e);
-          };
+            return onChange && onChange(value, e)
+          }
 
           // For required fields with no value, pass an error state
           const isSuccessProp: boolean =
             !disableSuccessIndicators &&
             isTouched && //! This does not allow success to appear when using autocomplete
             !!value &&
-            isValid;
+            isValid
 
           const isRequiredProp: {} = {
             ...(isRequired && !value ? { hasError: formError } : {}),
-          };
+          }
 
           // * PASSWORD MATCH PROPS * //
           // Pasword error
           const passwordMatchHasError: boolean =
-            hasError || passwordMatchError || (!value && formError);
+            hasError || passwordMatchError || (!value && formError)
 
           // Password is valide
-          const passwordMatchIsValid: boolean = isValid && !passwordMatchError;
+          const passwordMatchIsValid: boolean = isValid && !passwordMatchError
 
           // Password match is successful
           const passwordMatchIsSucces: boolean =
@@ -229,7 +229,7 @@ export default function Form({
             isTouched &&
             !!value &&
             isValid &&
-            !passwordMatchError;
+            !passwordMatchError
 
           // Handle Password specific props
           const passwordMatchProps: {} = {
@@ -240,16 +240,16 @@ export default function Form({
                   isSuccess: passwordMatchIsSucces,
                 }
               : {}),
-          };
+          }
 
           // Set up id with reference to form
-          const fieldId: string = formGroupId ? `${formGroupId}__${id}` : id;
+          const fieldId: string = formGroupId ? `${formGroupId}__${id}` : id
 
           const columnClass: string = !!breakpoint
             ? `col-${breakpoint}-${col} col-12`
-            : `col-${col}`;
+            : `col-${col}`
 
-          const styles = !!styleConfig && setStyles(styleConfig);
+          const styles = !!styleConfig && setStyles(styleConfig)
 
           const props = {
             columnClass,
@@ -262,12 +262,12 @@ export default function Form({
             onChange: onChangeProp,
             ...isRequiredProp,
             ...passwordMatchProps,
-          };
+          }
 
           // * Additional Children * //
           // This will avoid using long labels for the error messages
           const messageLabel =
-            !type || type === 'checkbox' || type === 'radio' ? 'Field' : label;
+            !type || type === 'checkbox' || type === 'radio' ? 'Field' : label
 
           const newChildren = [
             !isValid ? <IsIvalidErrorMessage label={messageLabel} /> : null,
@@ -282,13 +282,13 @@ export default function Form({
             passwordMatchError && id === passwordIDs[1] ? (
               <PasswordMatchErrorMessage />
             ) : null,
-          ];
+          ]
 
           return (
             <React.Fragment key={id}>
               {React.cloneElement(el, props, ...newChildren)}
             </React.Fragment>
-          );
+          )
         })}
       </div>
 
@@ -304,5 +304,5 @@ export default function Form({
         </button>
       </div>
     </form>
-  );
+  )
 }

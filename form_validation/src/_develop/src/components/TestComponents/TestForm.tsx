@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from 'react'
 
 const formStyles = {
   shadowColor: 'grey',
@@ -19,32 +19,34 @@ const formStyles = {
   errorColor: '#829efd',
   successColor: 'orange',
   fieldMarginBottom: '2px',
-};
+}
 
-import Form from '../FormComponents/Form';
-import Input from '../FormComponents/Input';
-import Checkbox from '../FormComponents/Checkbox';
-import Textarea from '../FormComponents/Textarea';
-import RadioButtons from '../FormComponents/RadioButtons';
-import Select from '../FormComponents/Select';
+import Form from '../../../../components/FormComponents/Form'
+import Input from '../../../../components/FormComponents/Input'
+import Checkbox from '../../../../components/FormComponents/Checkbox'
+import Textarea from '../../../../components/FormComponents/Textarea'
+import RadioButtons from '../../../../components/FormComponents/RadioButtons'
+import Select from '../../../../components/FormComponents/Select'
 
-const radioGroup = [{ label: 'red' }, { label: 'blue' }, { label: 'green' }];
+const radioGroup = [{ label: 'red' }, { label: 'blue' }, { label: 'green' }]
 
 const radioGroupTwo = [
   { id: 'value-1', label: 'Blade Runner' },
   { id: 'value-2', label: 'The Matrix' },
   { id: 'value-3', label: 'Equilibrium' },
-];
+]
 
 export default function TestForm(): JSX.Element {
-  const [showPassword, setShowPassword] = React.useState(false);
-  const [showPasswordConfirm, setShowPasswordConfirm] = React.useState(false);
-  const [test, setTest] = React.useState('');
-  const [favoriteColor, setFavoriteColor] = React.useState<string | null>(null);
-  const [movies, setGf] = React.useState(null);
-  const [message, setMessage] = React.useState('');
+  const [showPassword, setShowPassword] = React.useState(false)
+  const [showPasswordConfirm, setShowPasswordConfirm] = React.useState(false)
+  const [test, setTest] = React.useState('')
+  const [favoriteColor, setFavoriteColor] = React.useState<string | undefined>(
+    undefined
+  )
+  const [movies, setGf] = React.useState<string | undefined>(undefined)
+  const [message, setMessage] = React.useState<string | undefined>('')
 
-  const [openModal, setOpenModal] = React.useState(false);
+  const [openModal, setOpenModal] = React.useState(false)
 
   const [formFields, setFormFields] = React.useState({
     firstName: '',
@@ -57,20 +59,20 @@ export default function TestForm(): JSX.Element {
     zipcode: '',
     dob: '',
     checked: false,
-  });
+  })
 
   const onSubmit = (
     _: React.FormEvent<HTMLFormElement>,
     success: boolean
   ): void => {
-    console.log('success ==>', success);
-    alert(success ? 'Form success submitted!' : 'Error on form');
-  };
+    console.log('success ==>', success)
+    alert(success ? 'Form success submitted!' : 'Error on form')
+  }
 
   const updateFormItem = (
     key: string,
     value: string | number | boolean
-  ): void => setFormFields((prev) => ({ ...prev, [key]: value }));
+  ): void => setFormFields((prev) => ({ ...prev, [key]: value }))
 
   return (
     <div className="border-rounded p-lg">
@@ -91,7 +93,7 @@ export default function TestForm(): JSX.Element {
           label="Color"
           options={radioGroup}
           placeholder="color"
-          onChange={(v: string): void => setFavoriteColor(v)}
+          onChange={(v: any): void => setFavoriteColor(v)}
           value={favoriteColor}
           col={2}
           isDisabled
@@ -103,7 +105,7 @@ export default function TestForm(): JSX.Element {
           placeholder="John"
           value={formFields.firstName}
           isRequired
-          onChange={(v: string) => updateFormItem('firstName', v)}
+          onChange={(v: any) => updateFormItem('firstName', v)}
           col={5}
           isDisabled
         />
@@ -114,7 +116,9 @@ export default function TestForm(): JSX.Element {
           placeholder="Snow"
           value={formFields.lastName}
           isRequired
-          onChange={(v: string) => updateFormItem('lastName', v)}
+          onChange={(v: any): void => {
+            updateFormItem('lastName', v)
+          }}
           col={5}
         />
         <Input
@@ -124,7 +128,7 @@ export default function TestForm(): JSX.Element {
           placeholder="1234 Park Place"
           value={formFields.address}
           isRequired
-          onChange={(v: string) => updateFormItem('address', v)}
+          onChange={(v: any) => updateFormItem('address', v)}
           message={'This would be an address'}
           col={7}
         />
@@ -134,7 +138,7 @@ export default function TestForm(): JSX.Element {
           id="address-line2"
           placeholder="APT 2"
           value={formFields.addressTwo}
-          onChange={(v: string) => updateFormItem('addressTwo', v)}
+          onChange={(v: any) => updateFormItem('addressTwo', v)}
         />
         <Input
           label="Postal Code"
@@ -143,7 +147,7 @@ export default function TestForm(): JSX.Element {
           placeholder="12345"
           isRequired
           value={formFields.zipcode}
-          onChange={(v: string) => updateFormItem('zipcode', v)}
+          onChange={(v: any) => updateFormItem('zipcode', v)}
           validationType={(v: string) => /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(v)}
         />
 
@@ -161,7 +165,7 @@ export default function TestForm(): JSX.Element {
           ]}
           isRequired
           validationType="password"
-          onChange={(v: string) => updateFormItem('password', v)}
+          onChange={(v: any) => updateFormItem('password', v)}
         />
         <Input
           label="Confirm Password"
@@ -174,7 +178,7 @@ export default function TestForm(): JSX.Element {
           isBlock
           isRequired
           validationType="password"
-          onChange={(v: string) => updateFormItem('passwordConfirm', v)}
+          onChange={(v: any) => updateFormItem('passwordConfirm', v)}
         />
 
         <Input
@@ -188,7 +192,7 @@ export default function TestForm(): JSX.Element {
               Custom Label
             </p>
           }
-          onChange={(v: string) => setTest(v)}
+          onChange={(v: any) => setTest(v)}
           shouldValidate
           validationType={(v: string) => v === 'TEST'}
           message={[
@@ -204,11 +208,11 @@ export default function TestForm(): JSX.Element {
           shouldValidate
           validationType={(v: string) => v.length > 100}
           value={message}
-          onChange={(v: string) => setMessage(v)}
+          onChange={(v: any) => setMessage(v)}
           isRequired
           message={[
             'Must container at least 100 characters',
-            `Number of characters: ${message.length.toString()}`,
+            `Number of characters: ${message?.length.toString()}`,
           ]}
         />
 
@@ -217,7 +221,7 @@ export default function TestForm(): JSX.Element {
           options={radioGroupTwo}
           value={movies}
           isRequired
-          onChange={(v: boolean) => setGf(v)}
+          onChange={(v: any) => setGf(v)}
           id="movies"
         />
 
@@ -230,5 +234,5 @@ export default function TestForm(): JSX.Element {
         />
       </Form>
     </div>
-  );
+  )
 }
