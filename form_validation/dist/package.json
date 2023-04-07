@@ -1,6 +1,6 @@
 {
   "name": "@plake492/form-validation",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "./dist/index.d.ts",
   "module": "./dist/index.d.ts",
   "license": "MIT",
@@ -9,11 +9,11 @@
     "dev": "webpack-dev-server --open --mode development --hot",
     "build:webpack": "npm run clean && webpack --mode production && yarn copy",
     "copy-styles": " cp -R src/assets ./dist",
-    "build": "npm run clean && tsc --allowJs  && yarn copy && yarn fix-package && yarn sass-prod && yarn postcss-prod",
+    "build": "npm run clean && tsc --allowJs && yarn copy && yarn fix-package && yarn sass && yarn postcss-prod",
     "clean": "rm -rf dist",
     "fix-package": "sed -i -- 's/index.d.ts/index.d.ts/g' ./dist/package.json",
     "copy": "cp package.json README.md ./dist",
-    "sass-prod": "sass --style=compressed src/assets/scss/index.scss:dist/assets/css/index.css",
+    "sass": "sass  --no-source-map --style=compressed src/assets/scss/index.scss:dist/assets/css/index.css",
     "postcss-prod": "node postcssConfig.js"
   },
   "devDependencies": {
