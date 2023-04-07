@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@plake492/form-validation": "file:../form_validation",
+    "@plake492/t_css_utils": "^1.0.2",
     "date-fns": "^2.29.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

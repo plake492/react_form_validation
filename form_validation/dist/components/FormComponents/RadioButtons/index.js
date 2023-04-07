@@ -16,7 +16,6 @@ import { useFormFieldMessages } from '../../../hooks/useFormFieldMessages';
 import { formEvents } from '../../../utils/formEvents';
 var Radio = function (_a) {
     var name = _a.name, id = _a.id, label = _a.label, value = _a.value, checked = _a.checked, formGroupId = _a.formGroupId, isDisabled = _a.isDisabled, events = _a.events, _b = _a.type, type = _b === void 0 ? 'radio' : _b;
-    // If no value is provided, the label will also be the value
     var radioValue = value !== null && value !== void 0 ? value : label;
     var radioButtonId = formGroupId ? "".concat(formGroupId, "__").concat(id) : id;
     var bem = useBemify('radio');
@@ -28,17 +27,13 @@ var Radio = function (_a) {
 };
 export default function RadioButtons(_a) {
     var label = _a.label, value = _a.value, options = _a.options, wrapperClasses = _a.wrapperClasses, formGroupId = _a.formGroupId, message = _a.message, isRequired = _a.isRequired, isDisabled = _a.isDisabled, isSuccess = _a.isSuccess, isReadOnly = _a.isReadOnly, hasError = _a.hasError, shouldHideStatus = _a.shouldHideStatus, isVertical = _a.isVertical, onChange = _a.onChange, onClick = _a.onClick, onBlur = _a.onBlur, fieldId = _a.fieldId, styles = _a.styles, children = _a.children, columnClass = _a.columnClass;
-    // Set up function for handling styles
     var bem = useBemify('radio-buttons');
-    // Get messages as needed
     var messages = useFormFieldMessages({
         message: message,
         children: children,
         bem: bem,
         forceMessageClass: true,
     });
-    // Renaming value allows the Form wrapper to stil
-    // recieve a value prop to this child component
     var checked = value;
     var events = formEvents({
         onChange: onChange,

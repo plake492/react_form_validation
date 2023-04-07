@@ -7,7 +7,6 @@ import {
   RadioButtons,
   Select,
 } from '@plake492/form-validation';
-console.log('Form ==>', Form);
 
 export const MockSignup = function () {
   const formStyles = {
@@ -70,7 +69,7 @@ export const MockSignup = function () {
           noValidate
           autoComplete="on"
           formLabel="Signup form"
-          colorTheme="light"
+          colorTheme="dark"
         >
           <Input
             type="text"

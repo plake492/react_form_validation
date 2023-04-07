@@ -28,9 +28,7 @@ function EyeClosed() {
 export default function Input(_a) {
     var label = _a.label, value = _a.value, placeholder = _a.placeholder, ariaLabel = _a.ariaLabel, wrapperClasses = _a.wrapperClasses, message = _a.message, autocomplete = _a.autocomplete, isRequired = _a.isRequired, isBlock = _a.isBlock, isReadOnly = _a.isReadOnly, isDisabled = _a.isDisabled, isSuccess = _a.isSuccess, hasError = _a.hasError, shouldAutoFocus = _a.shouldAutoFocus, shouldHideStatus = _a.shouldHideStatus, isValid = _a.isValid, onClick = _a.onClick, onChange = _a.onChange, onBlur = _a.onBlur, children = _a.children, type = _a.type, maxlength = _a.maxlength, min = _a.min, max = _a.max, pattern = _a.pattern, prependedIcon = _a.prependedIcon, prependedOnClick = _a.prependedOnClick, appendedIcon = _a.appendedIcon, appendedOnClick = _a.appendedOnClick, columnClass = _a.columnClass, fieldId = _a.fieldId, forwardRef = _a.forwardRef, styles = _a.styles, hideLabel = _a.hideLabel;
     var _b = React.useState(false), showPassword = _b[0], setShowPassword = _b[1];
-    // Set up function for handling styles
     var bem = useBemify('input');
-    // Get messages as needed
     var messages = useFormFieldMessages({
         children: children,
         message: message,

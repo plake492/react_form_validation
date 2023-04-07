@@ -3,7 +3,6 @@ export var useOnClickOutside = function (_a) {
     var handler = _a.handler, reference = _a.reference, exception = _a.exception;
     useEffect(function () {
         var listener = function (event) {
-            // Do nothing if clicking reference's element or descendent elements
             var _a, _b;
             if (!reference.current ||
                 ((_a = reference.current) === null || _a === void 0 ? void 0 : _a.contains(event.target)) ||

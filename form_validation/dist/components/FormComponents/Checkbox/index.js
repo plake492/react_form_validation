@@ -16,9 +16,7 @@ import { useFormFieldMessages } from '../../../hooks/useFormFieldMessages';
 import { formEvents } from '../../../utils/formEvents';
 export default function Checkbox(_a) {
     var _b = _a.type, type = _b === void 0 ? 'checkbox' : _b, label = _a.label, value = _a.value, placeholder = _a.placeholder, ariaLabel = _a.ariaLabel, wrapperClasses = _a.wrapperClasses, message = _a.message, isRequired = _a.isRequired, isBlock = _a.isBlock, isReadOnly = _a.isReadOnly, isDisabled = _a.isDisabled, isSuccess = _a.isSuccess, hasError = _a.hasError, shouldAutoFocus = _a.shouldAutoFocus, shouldHideStatus = _a.shouldHideStatus, onClick = _a.onClick, onChange = _a.onChange, onBlur = _a.onBlur, children = _a.children, columnClass = _a.columnClass, fieldId = _a.fieldId, styles = _a.styles;
-    // Set up function for handling styles
     var bem = useBemify('checkbox');
-    // Get messages as needed
     var messages = useFormFieldMessages({
         message: message,
         children: children,

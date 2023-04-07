@@ -1,13 +1,11 @@
-const path = require('path');
+const path = require('path')
 
 module.exports = {
   mode: 'development',
   entry: './src/index.tsx',
   devtool: 'inline-source-map',
-
   output: {
-    path: path.join(__dirname, '/dist'),
-    // filename: 'main.js',
+    path: path.join(__dirname, '/TEST__LIB'),
     chunkFilename: '[name].js',
     filename: '[name].js',
   },
@@ -37,4 +35,4 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
-};
+}

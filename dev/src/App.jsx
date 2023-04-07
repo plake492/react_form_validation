@@ -4,7 +4,7 @@ import { MockSignup } from './components/MockSignup';
 
 export default function App() {
   return (
-    <main>
+    <main className="bg-grey-30">
       <MockSignup />
     </main>
   );

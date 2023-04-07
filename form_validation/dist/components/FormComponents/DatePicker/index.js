@@ -34,7 +34,6 @@ export default function DatePicker(_a) {
         window.addEventListener('keydown', handleKeydown);
         return function () { return window.removeEventListener('keydown', handleKeydown); };
     }, []);
-    // Get messages as needed
     var messages = useFormFieldMessages({
         children: children,
         message: message,

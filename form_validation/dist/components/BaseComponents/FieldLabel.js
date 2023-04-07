@@ -24,7 +24,6 @@ import * as React from 'react';
 import { checkIfAnyReactComponentType } from '../../utils/detectReactComponents';
 import { forceArray } from '../../utils/helpers';
 export default function FieldLabel(props) {
-    // Remove any non DOM attributes from the props before spreading
     var children = props.children, el = props.el, isRequired = props.isRequired, rest = __rest(props, ["children", "el", "isRequired"]);
     var Component = el !== null && el !== void 0 ? el : 'label';
     var childrenAsArray = forceArray(children);

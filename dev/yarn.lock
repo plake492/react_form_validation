@@ -1024,10 +1024,14 @@
   version "1.0.2"
   dependencies:
     "@types/react" "^18.0.28"
-    "@types/react-dom" "^18.0.11"
     "@types/react-transition-group" "^4.4.5"
     date-fns "^2.29.3"
     react-transition-group "^4.4.5"
+
+"@plake492/t_css_utils@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@plake492/t_css_utils/-/t_css_utils-1.0.2.tgz#e3c79fcf1e3037aa06b9410a9108fce41620d782"
+  integrity sha512-iZtux+3KVYxAacZN+s03lm69NojgFU3um7XWqN17F/TTvF29GLb0Gwb+fTOmhnwUWHA6b2bYk8eGOEJ+jdxN4Q==
 
 "@types/body-parser@*":
   version "1.19.2"
@@ -1145,13 +1149,6 @@
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.4.tgz#cd667bcfdd025213aafb7ca5915a932590acdcdc"
   integrity sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==
-
-"@types/react-dom@^18.0.11":
-  version "18.0.11"
-  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.0.11.tgz#321351c1459bc9ca3d216aefc8a167beec334e33"
-  integrity sha512-O38bPbI2CWtgw/OoQoY+BRelw7uysmXbWvw3nLWO21H1HSh+GOlqPuXshJfjmpNlKiiSDG9cc1JZAaMmVdcTlw==
-  dependencies:
-    "@types/react" "*"
 
 "@types/react-transition-group@^4.4.5":
   version "4.4.5"

@@ -1,17 +1,19 @@
 {
   "name": "@plake492/form-validation",
   "version": "1.0.2",
-  "main": "./dist/index.d.ts",
-  "module": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "license": "MIT",
   "private": false,
   "scripts": {
     "dev": "webpack-dev-server --open --mode development --hot",
-    "build": "npm run clean && webpack --mode production && yarn copy",
-    "build-ts": "npm run clean && tsc && yarn copy",
-    "copy": "cp package.json README.md ./dist && cp -R src/assets ./dist",
+    "build:webpack": "npm run clean && webpack --mode production && yarn copy",
+    "copy-styles": " cp -R src/assets ./dist",
+    "build": "npm run clean && tsc --allowJs  && yarn copy && yarn sass-prod && yarn postcss-prod",
     "clean": "rm -rf dist",
-    "sass-prod": "sass --no-source-map --style=compressed assets/scss:dist/assets/css"
+    "copy": "cp package.json README.md ./dist",
+    "sass-prod": "sass --style=compressed src/assets/scss/index.scss:dist/assets/css/index.css",
+    "postcss-prod": "node postcssConfig.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.21.0",
@@ -29,16 +31,25 @@
     "url-loader": "^4.1.1",
     "webpack": "^5.76.2",
     "webpack-cli": "^5.0.1",
-    "webpack-dev-server": "^4.12.0"
+    "webpack-dev-server": "^4.12.0",
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.21",
+    "postcss-combine-duplicated-selectors": "^10.0.3",
+    "postcss-combine-media-query": "^1.0.1",
+    "postcss-nested": "^6.0.0",
+    "postcss-sort-media-queries": "^4.3.0"
   },
   "dependencies": {
     "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
     "@types/react-transition-group": "^4.4.5",
     "date-fns": "^2.29.3",
     "react-transition-group": "^4.4.5"
   },
   "peerDependencies": {
     "react": "^18.2.0"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
   }
 }

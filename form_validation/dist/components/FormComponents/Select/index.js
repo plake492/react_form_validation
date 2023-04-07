@@ -30,13 +30,9 @@ var Option = function (_a) {
 };
 export default function Select(_a) {
     var label = _a.label, value = _a.value, placeholder = _a.placeholder, wrapperClasses = _a.wrapperClasses, message = _a.message, name = _a.name, width = _a.width, isBlock = _a.isBlock, isDisabled = _a.isDisabled, isReadOnly = _a.isReadOnly, isSuccess = _a.isSuccess, isRequired = _a.isRequired, shouldHideStatus = _a.shouldHideStatus, hasError = _a.hasError, onChange = _a.onChange, onClick = _a.onClick, onBlur = _a.onBlur, children = _a.children, options = _a.options, removePlaceholder = _a.removePlaceholder, fieldId = _a.fieldId, columnClass = _a.columnClass, forDatePicker = _a.forDatePicker, hideLabel = _a.hideLabel;
-    // Give the placeholder a standard format
     var formatPlaceholder = placeholder !== null && placeholder !== void 0 ? placeholder : '--select--';
-    // Add a placeholder option unless disabled
     var optionsList = !removePlaceholder
         ? __spreadArray([{ label: formatPlaceholder, value: '', isPlaceholder: true }], options, true) : options;
-    // This allows us to set a value when the select el is clicked in the even
-    // that the defualt placeholder has been disabled
     var handleOnClick = function (v) {
         if (removePlaceholder && onChange) {
             onChange(v);
@@ -45,9 +41,7 @@ export default function Select(_a) {
             onClick(v);
         }
     };
-    // Set up function for handling styles
     var bem = useBemify('select');
-    // Get messages as needed
     var messages = useFormFieldMessages({
         children: children,
         message: message,

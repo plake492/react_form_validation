@@ -1,4 +1,4 @@
-import './assets/scss/index.scss';
+import './assets/css/index.css';
 import Checkbox from './components/FormComponents/Checkbox';
 import DatePicker from './components/FormComponents/DatePicker';
 import Form from './components/FormComponents/Form';
