@@ -78,7 +78,26 @@ export default function MockSignup(): JSX.Element {
             onChange={(v) =>
               setUser((prev: {}) => ({ ...prev, ['firstName']: v }))
             }
-            label="First Name"
+            label={
+              <section style={{ padding: '2rem', backgroundColor: 'blue' }}>
+                <main style={{ marginLeft: '2rem', backgroundColor: 'yellow' }}>
+                  <label
+                    style={{ marginLeft: '2rem', backgroundColor: 'green' }}
+                  >
+                    <p
+                      style={{
+                        marginLeft: '2rem',
+                        padding: '2rem',
+                        backgroundColor: '#232323',
+                        color: '#ffffff',
+                      }}
+                    >
+                      First Name
+                    </p>
+                  </label>
+                </main>
+              </section>
+            }
             id="first-name"
             isRequired
             col={6}
@@ -100,7 +119,15 @@ export default function MockSignup(): JSX.Element {
             type="email"
             value={user.email}
             onChange={(v) => setUser((prev: {}) => ({ ...prev, ['email']: v }))}
-            label="email"
+            label={
+              <div className="WHY_IS_IT_SO_COMPLICATED">
+                <div>
+                  <div>Yo</div>
+                  <div>Whatup</div>
+                </div>
+              </div>
+            }
+            // label="Email"
             id="email"
             isRequired
           />
@@ -213,14 +240,23 @@ export default function MockSignup(): JSX.Element {
           />
           <Checkbox
             label={
-              // TODO Allow custom labels and, Ensure that htmlFor is applied propery
-              <label
-                htmlFor="tos"
-                // this id is incorect since it does not inclue the form id
+              <div
+                style={{
+                  backgroundColor: '#000',
+                  color: '#fff',
+                  borderRadius: '16px',
+                  padding: '2rem',
+                }}
               >
-                Please confirm that you have read the{' '}
-                <a href="#">Terms of Service</a>
-              </label>
+                <main>
+                  <aside>
+                    <label>
+                      Please confirm that you have read the{' '}
+                      <a href="#">Terms of Service</a>
+                    </label>
+                  </aside>
+                </main>
+              </div>
             }
             id="tos"
             isRequired

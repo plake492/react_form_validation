@@ -64,6 +64,7 @@ export default function Form(_a) {
         formLabel ? React.createElement(FieldLabel, { el: "legend" }, formLabel) : null,
         React.createElement("div", { className: bem('field-wrapper', wrapperClasses, 'row', gapClass) }, elements.map(function (el, index) {
             var _a = el.props, id = _a.id, value = _a.value, label = _a.label, type = _a.type, isRequired = _a.isRequired, shouldValidate = _a.shouldValidate, hasError = _a.hasError, onChange = _a.onChange, onBlur = _a.onBlur, validationType = _a.validationType, _b = _a.col, col = _b === void 0 ? 12 : _b, breakpoint = _a.breakpoint, styleConfig = _a.styleConfig;
+            console.log('label ==>', label);
             if (isDOMTypeElement(el) ||
                 !validFormComponentChildren.includes(el.type.name)) {
                 return (React.createElement(React.Fragment, { key: index }, React.cloneElement(el)));

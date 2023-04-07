@@ -21,6 +21,10 @@ input[type='date']::-webkit-calendar-picker-indicator {
   @include field-as-box-wtih-text($prefix);
   @include message-styles($prefix);
 
+  &--calendar-open {
+    z-index: 2;
+  }
+
   &__field {
     @include input-placeholder {
       color: var(--datepicker-field-placeholder-text-color);
@@ -99,6 +103,14 @@ input[type='date']::-webkit-calendar-picker-indicator {
       @include flex-center;
       padding: rem(8) 0;
 
+      .select--date-picker {
+        margin-bottom: 0;
+      }
+
+      .select__field {
+        --select-field-text-color: #ededed;
+      }
+
       p {
         font-size: rem(24);
         line-height: calc(rem(24) * 1.5);
@@ -117,6 +129,7 @@ input[type='date']::-webkit-calendar-picker-indicator {
       width: var(--day-width);
       font-weight: 600;
       margin-bottom: 0;
+      color: #ededed;
     }
 
     &__days-wrapper {

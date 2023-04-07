@@ -1,9 +1,9 @@
-import { addMonths, format, subMonths } from 'date-fns';
-import * as React from 'react';
-import { useBemify } from '../../../hooks/useBemify';
-import { useOnClickOutside } from '../../../hooks/useOnClickOutside';
-import { CalendarWrapperProps } from '../../../types';
-import Calender from './Calender';
+import { addMonths, format, subMonths } from 'date-fns'
+import * as React from 'react'
+import { useBemify } from '../../../hooks/useBemify'
+import { useOnClickOutside } from '../../../hooks/useOnClickOutside'
+import { CalendarWrapperProps } from '../../../types'
+import Calender from './Calender'
 
 function ArrowRight() {
   return (
@@ -18,12 +18,12 @@ function ArrowRight() {
       <path
         d="M19 7L0.999969 7M19 7L13 1M19 7L13 13"
         stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
-  );
+  )
 }
 
 function ArrowLeft() {
@@ -39,12 +39,12 @@ function ArrowLeft() {
       <path
         d="M1 7h18M1 7l6 6M1 7l6-6"
         stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
-  );
+  )
 }
 
 export default function CalendarWrapper({
@@ -58,35 +58,35 @@ export default function CalendarWrapper({
   monthAndYearAreSelectable,
 }: CalendarWrapperProps) {
   const [currentFocusedDate, setCurrentFocusedDate] =
-    React.useState<Date>(startDate);
+    React.useState<Date>(startDate)
 
   const [calendarPosition, setCalendarPosition] = React.useState<
     'top' | 'bottom'
-  >('bottom');
+  >('bottom')
 
-  const calendarRef = React.useRef<HTMLDivElement>();
+  const calendarRef = React.useRef<HTMLDivElement>()
 
   React.useEffect(() => {
     if (
       calendarRef.current?.getBoundingClientRect().bottom > window.outerHeight
     ) {
-      setCalendarPosition('top');
+      setCalendarPosition('top')
     }
-  }, [showDatePicker]);
+  }, [showDatePicker])
 
   useOnClickOutside({
     handler: () => {
       if (showDatePicker) {
-        setShowDatePicker(false);
+        setShowDatePicker(false)
       }
     },
     reference: calendarRef,
     exception: iconRef,
-  });
+  })
 
-  const bem: Function = useBemify('datepicker');
+  const bem: Function = useBemify('datepicker')
 
-  const numCalendarsToDisplay: 1 | 2 = showTwoMonths ? 2 : 1;
+  const numCalendarsToDisplay: 1 | 2 = showTwoMonths ? 2 : 1
 
   return (
     <div
@@ -128,5 +128,5 @@ export default function CalendarWrapper({
         )}
       </div>
     </div>
-  );
+  )
 }

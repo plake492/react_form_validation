@@ -1,23 +1,22 @@
-import * as React from 'react';
-import { useBemify } from '../../../hooks/useBemify';
-import FieldLabel from '../../BaseComponents/FieldLabel';
-import SuccessIcon from '../../BaseComponents/SuccessIcon';
-import { useFormFieldMessages } from '../../../hooks/useFormFieldMessages';
-import { OptionPropTypes, SelectPropTypes } from '../../../types';
-import { formEvents } from '../../../utils/formEvents';
+import * as React from 'react'
+import { useBemify } from '../../../hooks/useBemify'
+import FieldLabel from '../../BaseComponents/FieldLabel'
+import SuccessIcon from '../../BaseComponents/SuccessIcon'
+import { useFormFieldMessages } from '../../../hooks/useFormFieldMessages'
+import { OptionPropTypes, SelectPropTypes } from '../../../types'
+import { formEvents } from '../../../utils/formEvents'
 
 const Option = function ({
   value,
   label,
   disabled,
-  selected,
 }: OptionPropTypes): JSX.Element {
   return (
-    <option disabled={disabled} value={value ?? label} selected={selected}>
+    <option disabled={disabled} value={value ?? label}>
       {label}
     </option>
-  );
-};
+  )
+}
 
 export default function Select({
   label,
@@ -46,38 +45,38 @@ export default function Select({
   hideLabel,
 }: SelectPropTypes) {
   // Give the placeholder a standard format
-  const formatPlaceholder: string = placeholder ?? '--select--';
+  const formatPlaceholder: string = placeholder ?? '--select--'
 
   // Add a placeholder option unless disabled
   const optionsList: OptionPropTypes[] = !removePlaceholder
     ? [{ label: formatPlaceholder, value: '', isPlaceholder: true }, ...options]
-    : options;
+    : options
 
   // This allows us to set a value when the select el is clicked in the even
   // that the defualt placeholder has been disabled
   const handleOnClick = (v: string): void => {
     if (removePlaceholder && onChange) {
-      onChange(v);
+      onChange(v)
     }
     if (onClick) {
-      onClick(v);
+      onClick(v)
     }
-  };
+  }
   // Set up function for handling styles
-  const bem: Function = useBemify('select');
+  const bem: Function = useBemify('select')
 
   // Get messages as needed
   const messages: JSX.Element = useFormFieldMessages({
     children,
     message,
     bem,
-  });
+  })
 
   const events = formEvents<HTMLSelectElement>({
     onClick: handleOnClick,
     onChange,
     onBlur,
-  });
+  })
 
   return (
     <fieldset
@@ -133,5 +132,5 @@ export default function Select({
       </div>
       <div className={bem('message-wrapper')}>{messages}</div>
     </fieldset>
-  );
+  )
 }

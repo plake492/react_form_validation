@@ -1,6 +1,9 @@
 import * as React from 'react'
 import { useBemify } from '../../../hooks/useBemify'
-import { isDOMTypeElement } from '../../../utils/detectReactComponents'
+import {
+  isDOMTypeElement,
+  checkIfAnyReactComponentType,
+} from '../../../utils/detectReactComponents'
 import { forceArray } from '../../../utils/helpers'
 import FieldLabel from '../../BaseComponents/FieldLabel'
 import {
@@ -14,6 +17,7 @@ import { useStyleForm } from '../../../hooks/useStyleForm'
 import { FormPropTypes, InputPropTypes } from '../../../types'
 import { validFormComponentChildren } from '../../../utils/validFormComponentChildren'
 import { setStyles } from '../../../utils/styleVars'
+import { setLabelHtmlForAttr } from '../../../utils/injectHtmlForAttrIntoLabel'
 
 export default function Form({
   children,
@@ -131,7 +135,7 @@ export default function Form({
             breakpoint,
             styleConfig,
           }: InputPropTypes = el.props
-          console.log('label ==>', label)
+
           /**
            * If child is not a react component,
            * or if it's not on the list of
@@ -245,6 +249,15 @@ export default function Form({
           // Set up id with reference to form
           const fieldId: string = formGroupId ? `${formGroupId}__${id}` : id
 
+          let formattedLabel = label
+
+          if (checkIfAnyReactComponentType(label)) {
+            formattedLabel = setLabelHtmlForAttr({
+              el: label as JSX.Element,
+              id: fieldId,
+            })
+          }
+
           const columnClass: string = !!breakpoint
             ? `col-${breakpoint}-${col} col-12`
             : `col-${col}`
@@ -257,6 +270,7 @@ export default function Form({
             formGroupId,
             isValid,
             styles,
+            label: formattedLabel,
             isSuccess: isSuccessProp,
             onBlur: onBlurProp,
             onChange: onChangeProp,

@@ -7,9 +7,9 @@ export default function App() {
   return (
     <main>
       <MockSignup />
-      <div style={{ backgroundColor: '#222222', padding: '4rem 0' }}>
+      {/* <div style={{ backgroundColor: '#222222', padding: '4rem 0' }}>
         <TestForm />
-      </div>
+      </div> */}
     </main>
   )
 }

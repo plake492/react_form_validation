@@ -1,5 +1,6 @@
-import * as React from 'react';
-import { checkIfAnyReactComponentType } from '../../utils/detectReactComponents';
+import * as React from 'react'
+import { checkIfAnyReactComponentType } from '../../utils/detectReactComponents'
+import { formFieldLabelTyps } from '../../types'
 
 const MessageWrapper = function ({ children }: { children: React.ReactNode }) {
   return (
@@ -24,13 +25,13 @@ const MessageWrapper = function ({ children }: { children: React.ReactNode }) {
       </svg>
       {children}
     </div>
-  );
-};
+  )
+}
 
 export const IsIvalidErrorMessage = function ({
   label,
 }: {
-  label: string | JSX.Element;
+  label: formFieldLabelTyps
 }): JSX.Element {
   return (
     <MessageWrapper>
@@ -40,13 +41,13 @@ export const IsIvalidErrorMessage = function ({
           : `${label} is invalid`}
       </i>
     </MessageWrapper>
-  );
-};
+  )
+}
 
 export const RequiredFieldErrorMessage = function ({
   label,
 }: {
-  label: string | JSX.Element;
+  label: formFieldLabelTyps
 }): JSX.Element {
   return (
     <MessageWrapper>
@@ -56,13 +57,13 @@ export const RequiredFieldErrorMessage = function ({
           : `${label} is required`}
       </i>
     </MessageWrapper>
-  );
-};
+  )
+}
 
 export const PasswordMatchErrorMessage = function () {
   return (
     <MessageWrapper>
       <i>Passwords do not match</i>
     </MessageWrapper>
-  );
-};
+  )
+}

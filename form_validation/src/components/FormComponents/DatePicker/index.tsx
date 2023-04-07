@@ -1,13 +1,13 @@
-import * as React from 'react';
-import FadeInComponent from '../../BaseComponents/FadeInComponent';
+import * as React from 'react'
+import FadeInComponent from '../../BaseComponents/FadeInComponent'
 
-import { useBemify } from '../../../hooks/useBemify';
-import { useFormFieldMessages } from '../../../hooks/useFormFieldMessages';
-import { formEvents } from '../../../utils/formEvents';
-import SuccessIcon from '../../BaseComponents/SuccessIcon';
-import FieldLabel from '../../BaseComponents/FieldLabel';
-import CalendarWrapper from './CalendarWrapper';
-import { DatePickerTypes } from '../../../types';
+import { useBemify } from '../../../hooks/useBemify'
+import { useFormFieldMessages } from '../../../hooks/useFormFieldMessages'
+import { formEvents } from '../../../utils/formEvents'
+import SuccessIcon from '../../BaseComponents/SuccessIcon'
+import FieldLabel from '../../BaseComponents/FieldLabel'
+import CalendarWrapper from './CalendarWrapper'
+import { DatePickerTypes } from '../../../types'
 
 export default function DatePicker({
   startDate = new Date(),
@@ -39,38 +39,38 @@ export default function DatePicker({
   monthAndYearAreSelectable,
   hideLabel,
 }: DatePickerTypes): JSX.Element {
-  const [showDatePicker, setShowDatePicker] = React.useState<boolean>(false);
+  const [showDatePicker, setShowDatePicker] = React.useState<boolean>(false)
 
-  const bem: Function = useBemify('datepicker');
+  const bem: Function = useBemify('datepicker')
 
-  const iconRef = React.useRef<HTMLDivElement>();
+  const iconRef = React.useRef<HTMLDivElement>()
 
   const handleKeydown = (e: KeyboardEvent) => {
     if (document.activeElement === iconRef.current && e.key === 'Enter') {
-      setShowDatePicker(true);
+      setShowDatePicker(true)
     }
     if (e.key === 'Escape') {
-      setShowDatePicker(false);
+      setShowDatePicker(false)
     }
-  };
+  }
 
   React.useEffect(() => {
-    window.addEventListener('keydown', handleKeydown);
-    return () => window.removeEventListener('keydown', handleKeydown);
-  }, []);
+    window.addEventListener('keydown', handleKeydown)
+    return () => window.removeEventListener('keydown', handleKeydown)
+  }, [])
 
   // Get messages as needed
   const messages: JSX.Element = useFormFieldMessages({
     children,
     message,
     bem,
-  });
+  })
 
   const events = formEvents<HTMLInputElement>({
     onChange,
     onClick,
     onBlur,
-  });
+  })
 
   return (
     <div
@@ -78,7 +78,7 @@ export default function DatePicker({
         '',
         columnClass,
         wrapperClasses,
-        [showDatePicker, 'z-2'],
+        [showDatePicker, '--calendar-open'],
         [isDisabled, 'disabled'],
         [isReadOnly, 'readonly'],
         [!shouldHideStatus && (hasError || !isValid), 'error'],
@@ -141,7 +141,8 @@ export default function DatePicker({
             <path d="M14 6.5H2a.5.5 0 0 1 0-1h12a.5.5 0 0 1 0 1zM5.5 7.5h1v1h-1zM7.5 7.5h1v1h-1zM9.5 7.5h1v1h-1zM11.5 7.5h1v1h-1zM3.5 9.5h1v1h-1zM5.5 9.5h1v1h-1zM7.5 9.5h1v1h-1zM9.5 9.5h1v1h-1zM11.5 9.5h1v1h-1zM3.5 11.5h1v1h-1zM5.5 11.5h1v1h-1zM7.5 11.5h1v1h-1z"></path>
           </svg>
         </div>
-        <FadeInComponent trigger={showDatePicker} timeout={200}>
+        {/* <FadeInComponent trigger={showDatePicker} timeout={200}> */}
+        {showDatePicker ? (
           <CalendarWrapper
             showDatePicker={showDatePicker}
             setShowDatePicker={setShowDatePicker}
@@ -152,9 +153,10 @@ export default function DatePicker({
             onChange={onChange}
             monthAndYearAreSelectable={monthAndYearAreSelectable}
           />
-        </FadeInComponent>
+        ) : null}
+        {/* </FadeInComponent> */}
       </div>
       <div className={bem('message-wrapper')}>{messages}</div>
     </div>
-  );
+  )
 }
