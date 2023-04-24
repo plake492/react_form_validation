@@ -1,10 +1,9 @@
 {
   "name": "@plake492/form-validation",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "main": "./dist/index.d.ts",
   "module": "./dist/index.d.ts",
   "license": "MIT",
-  "type": "module",
   "private": false,
   "scripts": {
     "dev": "webpack-dev-server --open --mode development --hot",
