@@ -1,3 +1,4 @@
+"use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -9,11 +10,13 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-import * as React from 'react';
-import { forceArray } from '../utils/helpers';
-export var useConfirmPasswordMatch = function (_a) {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.useConfirmPasswordMatch = void 0;
+var React = require("react");
+var helpers_1 = require("../utils/helpers");
+var useConfirmPasswordMatch = function (_a) {
     var children = _a.children, excludeFieldFromConfirmPassword = _a.excludeFieldFromConfirmPassword;
-    var elements = forceArray(children);
+    var elements = (0, helpers_1.forceArray)(children);
     var passwordElements = React.useMemo(function () {
         return elements.filter(function (el) {
             return el.props.type === 'password' &&
@@ -76,4 +79,5 @@ export var useConfirmPasswordMatch = function (_a) {
         handlePasswordsMatch: handlePasswordsMatch,
     };
 };
+exports.useConfirmPasswordMatch = useConfirmPasswordMatch;
 //# sourceMappingURL=useConfirmPasswordMatch.js.map

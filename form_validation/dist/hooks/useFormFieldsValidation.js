@@ -1,3 +1,4 @@
+"use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -9,12 +10,14 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-import * as React from 'react';
-import { forceArray } from '../utils/helpers';
-import { formValidation } from '../utils/formValidation';
-export var useFormFieldsValidation = function (_a) {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.useFormFieldsValidation = void 0;
+var React = require("react");
+var helpers_1 = require("../utils/helpers");
+var formValidation_1 = require("../utils/formValidation");
+var useFormFieldsValidation = function (_a) {
     var children = _a.children;
-    var elements = forceArray(children);
+    var elements = (0, helpers_1.forceArray)(children);
     var requiredElements = React.useMemo(function () {
         return elements.filter(function (el) { return el.props.isRequired || el.props.shouldValidate; });
     }, []);
@@ -58,7 +61,7 @@ export var useFormFieldsValidation = function (_a) {
     var checkFieldValidation = function (_a) {
         var id = _a.id, value = _a.value, validationType = _a.validationType, isTouched = _a.isTouched, shouldValidate = _a.shouldValidate, isRequired = _a.isRequired, type = _a.type;
         var isValid = true;
-        var validation = validationType || (type in formValidation && type) || 'text';
+        var validation = validationType || (type in formValidation_1.formValidation && type) || 'text';
         if (isTouched && (shouldValidate || isRequired)) {
             var validationTest = void 0;
             if (validation instanceof Function) {
@@ -66,7 +69,7 @@ export var useFormFieldsValidation = function (_a) {
             }
             else {
                 validationTest =
-                    formValidation[validation];
+                    formValidation_1.formValidation[validation];
             }
             if (validationTest instanceof RegExp) {
                 isValid = validationTest.test(value === null || value === void 0 ? void 0 : value.toString());
@@ -96,4 +99,5 @@ export var useFormFieldsValidation = function (_a) {
         checkFieldValidation: checkFieldValidation,
     };
 };
+exports.useFormFieldsValidation = useFormFieldsValidation;
 //# sourceMappingURL=useFormFieldsValidation.js.map

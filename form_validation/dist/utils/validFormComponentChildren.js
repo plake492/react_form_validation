@@ -1,4 +1,7 @@
-export var validFormComponentChildren = [
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.validFormComponentChildren = void 0;
+exports.validFormComponentChildren = [
     'Input',
     'Checkbox',
     'RadioButtons',

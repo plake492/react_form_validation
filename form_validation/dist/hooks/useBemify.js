@@ -1,3 +1,4 @@
+"use strict";
 var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
         if (ar || !(i in from)) {
@@ -7,7 +8,9 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     }
     return to.concat(ar || Array.prototype.slice.call(from));
 };
-import { useMemo } from 'react';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.useBemify = void 0;
+var react_1 = require("react");
 var bemify = function (block) {
     return function (element) {
         var classes = [];
@@ -46,7 +49,8 @@ var bemify = function (block) {
         return __spreadArray([combined], formedClasses, true).join(' ');
     };
 };
-export var useBemify = function (block) {
-    return useMemo(function () { return bemify(block); }, []);
+var useBemify = function (block) {
+    return (0, react_1.useMemo)(function () { return bemify(block); }, []);
 };
+exports.useBemify = useBemify;
 //# sourceMappingURL=useBemify.js.map

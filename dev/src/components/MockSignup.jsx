@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {
   Checkbox,
   DatePicker,
@@ -6,20 +6,20 @@ import {
   Input,
   RadioButtons,
   Select,
-} from '@plake492/form-validation';
+} from '@plake492/form-validation'
 
 export const MockSignup = function () {
-  const formStyles = {
-    shadowColor: 'grey',
-    fieldBackgroundColor: 'blueviolet',
-    fieldTextColor: 'darkblue',
-    fieldPlaceholderTextColor: 'cornflower',
-    fieldBorderColor: 'indego',
-    fieldBorderColorFocus: 'orange',
-    labelTextColor: 'lime',
-    errorColor: 'red',
-    successColor: 'orange',
-  };
+  // const formStyles = {
+  //   shadowColor: 'grey',
+  //   fieldBackgroundColor: 'blueviolet',
+  //   fieldTextColor: 'darkblue',
+  //   fieldPlaceholderTextColor: 'cornflower',
+  //   fieldBorderColor: 'indego',
+  //   fieldBorderColorFocus: 'orange',
+  //   labelTextColor: 'lime',
+  //   errorColor: 'red',
+  //   successColor: 'orange',
+  // };
 
   const [user, setUser] = React.useState({
     firstName: '',
@@ -35,7 +35,10 @@ export const MockSignup = function () {
     gender: '',
     food: '',
     tos: false,
-  });
+  })
+
+  const validateZipCode = (v) => /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(v)
+  const validatePhone = (v) => /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/.test(v)
 
   return (
     <div className="row" style={{ padding: '4rem' }}>
@@ -88,7 +91,6 @@ export const MockSignup = function () {
             id="last-name"
             isRequired
             col={6}
-            styleConfig={formStyles}
           />
 
           <Input
@@ -106,9 +108,7 @@ export const MockSignup = function () {
             label="phone"
             id="phone"
             shouldValidate
-            validationType={(v) =>
-              /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/.test(v)
-            }
+            validationType={validatePhone}
           />
           <Input
             label="Address"
@@ -139,7 +139,7 @@ export const MockSignup = function () {
             isRequired
             value={user.zipcode}
             onChange={(v) => setUser((prev) => ({ ...prev, ['zipcode']: v }))}
-            validationType={(v) => /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(v)}
+            validationType={validateZipCode}
             col={6}
             autocomplete="on"
           />
@@ -217,5 +217,5 @@ export const MockSignup = function () {
         </Form>
       </div>
     </div>
-  );
-};
+  )
+}

@@ -1,4 +1,4 @@
-import './assets/css/index.css'
+// import './assets/css/index.css'
 
 import Form from './components/FormComponents/Form'
 export { Form }
@@ -12,3 +12,5 @@ import RadioButtons from './components/FormComponents/RadioButtons'
 export { RadioButtons }
 import Select from './components/FormComponents/Select'
 export { Select }
+import Textarea from './components/FormComponents/Textarea'
+export { Textarea }

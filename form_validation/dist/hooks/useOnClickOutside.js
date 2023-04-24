@@ -1,7 +1,10 @@
-import { useEffect } from 'react';
-export var useOnClickOutside = function (_a) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.useOnClickOutside = void 0;
+var react_1 = require("react");
+var useOnClickOutside = function (_a) {
     var handler = _a.handler, reference = _a.reference, exception = _a.exception;
-    useEffect(function () {
+    (0, react_1.useEffect)(function () {
         var listener = function (event) {
             var _a, _b;
             if (!reference.current ||
@@ -19,4 +22,5 @@ export var useOnClickOutside = function (_a) {
         };
     }, [reference, handler, exception]);
 };
+exports.useOnClickOutside = useOnClickOutside;
 //# sourceMappingURL=useOnClickOutside.js.map

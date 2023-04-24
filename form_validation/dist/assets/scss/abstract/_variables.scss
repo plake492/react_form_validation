@@ -1,0 +1,42 @@
+// TODO Make this come from outside this library?
+$base-font-size: 16;
+$base-spacing: 1rem;
+
+/**************************************************/
+/* Global Spacers */
+/**************************************************/
+
+$space-none: 0rem;
+$space-xs: $base-spacing * 0.25;
+$space-sm: $base-spacing * 0.5;
+$space-md: $base-spacing;
+$space-lg: $base-spacing * 2;
+$space-xl: $base-spacing * 3;
+$space-xxl: $base-spacing * 4;
+$space-xxxl: $base-spacing * 8;
+
+$spacers: (
+  none: $space-none,
+  xs: $space-xs,
+  sm: $space-sm,
+  md: $space-md,
+  lg: $space-lg,
+  xl: $space-xl,
+  xxl: $space-xxl,
+  xxxl: $space-xxxl,
+  auto: auto,
+);
+
+$screen-sm-min: rem(576);
+$screen-md-min: rem(768);
+$screen-lg-min: rem(992);
+$screen-xl-min: rem(1200);
+$screen-xxl-min: rem(1400);
+
+$breakpoints: (
+  sm: $screen-sm-min,
+  md: $screen-md-min,
+  lg: $screen-lg-min,
+  xl: $screen-xl-min,
+  xxl: $screen-xxl-min,
+);

@@ -7,15 +7,15 @@
   "private": false,
   "scripts": {
     "dev": "webpack-dev-server --open --mode development --hot",
-    "build": "npm run clean && yarn build:tsc && yarn copy-project-files && yarn fix-package.json && yarn sass && yarn postcss-prod",
+    "build": "npm run clean && yarn build:tsc && yarn copy-project-files && yarn copy-sass && yarn fix-package.json && yarn sass && yarn postcss-prod",
     "clean": "rm -rf dist",
-    "build:tsc": "tsc --allowJs",
-    "copy-project-files": "cp package.json README.md ./dist",
+    "build:tsc": "tsc",
+    "copy-project-files": "cp package.json README.md ./dist ",
     "fix-package.json": "sed -i -- 's/index.tsx/index.d.ts/g' ./dist/package.json",
-    "fix-style-link:js": "sed -i '1s/^/give-me-tits' ./dist/index.js",
-    "sass": "sass --no-source-map --style=compressed src/assets/scss/index.scss:dist/assets/css/index.css",
+    "sass": "sass --style=compressed src/assets/scss/index.scss:dist/assets/css/index.css",
     "postcss-prod": "node postcssConfig.js",
-    "copy-sass": " cp -R src/assets ./dist"
+    "copy-sass": " cp -R src/assets ./dist/assets",
+    "pub": "yarn build && yarn publish ./dist --access public"
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",

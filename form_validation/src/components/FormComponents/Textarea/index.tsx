@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { useBemify } from '../../../hooks/useBemify';
+import * as React from 'react'
+import { useBemify } from '../../../hooks/useBemify'
 
-import FieldLabel from '../../BaseComponents/FieldLabel';
-import SuccessIcon from '../../BaseComponents/SuccessIcon';
-import { useFormFieldMessages } from '../../../hooks/useFormFieldMessages';
-import { TextAreaPropTypes } from '../../../types';
-import { formEvents } from '../../../utils/formEvents';
+import FieldLabel from '../../BaseComponents/FieldLabel'
+import SuccessIcon from '../../BaseComponents/SuccessIcon'
+import { useFormFieldMessages } from '../../../hooks/useFormFieldMessages'
+import { TextAreaPropTypes } from '../../../types'
+import { formEvents } from '../../../utils/formEvents'
 
 export default function Textarea({
   label,
@@ -35,20 +35,20 @@ export default function Textarea({
   styles,
 }: TextAreaPropTypes): JSX.Element {
   // Set up function for handling styles
-  const bem: Function = useBemify('textarea');
+  const bem: Function = useBemify('textarea')
 
   // Get messages as needed
   const messages: JSX.Element = useFormFieldMessages({
     children,
     message,
     bem,
-  });
+  })
 
   const events = formEvents<HTMLTextAreaElement>({
     onChange,
     onClick,
     onBlur,
-  });
+  })
 
   return (
     <div
@@ -102,5 +102,5 @@ export default function Textarea({
       </div>
       <div className={bem('message-wrapper')}>{messages}</div>
     </div>
-  );
+  )
 }

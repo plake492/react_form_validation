@@ -1,6 +1,9 @@
-export var dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-export var dayNamesLetter = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-export var monthsLong = [
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.formatCalendarDate = exports.monthsShort = exports.monthsLong = exports.dayNamesLetter = exports.dayNames = void 0;
+exports.dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+exports.dayNamesLetter = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+exports.monthsLong = [
     'January',
     'February',
     'March',
@@ -14,7 +17,7 @@ export var monthsLong = [
     'November',
     'December',
 ];
-export var monthsShort = [
+exports.monthsShort = [
     'Jan',
     'Feb',
     'Mar',
@@ -28,5 +31,6 @@ export var monthsShort = [
     'Nov',
     'Dec',
 ];
-export var formatCalendarDate = function (m, d, y) { return "".concat((typeof m === 'string' ? parseInt(m) : m) + 1, "/").concat(d, "/").concat(y); };
+var formatCalendarDate = function (m, d, y) { return "".concat((typeof m === 'string' ? parseInt(m) : m) + 1, "/").concat(d, "/").concat(y); };
+exports.formatCalendarDate = formatCalendarDate;
 //# sourceMappingURL=dateHelpers.js.map

@@ -25,7 +25,7 @@
     "webpack-dev-server": "^4.12.0"
   },
   "dependencies": {
-    "@plake492/form-validation": "file:../form_validation",
+    "@plake492/form_validation": "file:../form-validation",
     "@plake492/t_css_utils": "^1.0.2",
     "date-fns": "^2.29.3",
     "react": "^18.2.0",
@@ -33,5 +33,10 @@
   },
   "resolutions": {
     "@plake492/form-validation/react": "^18.2.0"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "arrowParens": "always"
   }
 }

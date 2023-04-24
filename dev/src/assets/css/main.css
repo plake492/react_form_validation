@@ -1,4 +1,7 @@
 .form--dark,
 .form--light {
   --form-field-background-color: #21d1e1;
+  --form-field-placeholder-text-color: #44444488;
+  --form-field-text-color: #444444;
+  --form-label-text-color: #ebb479;
 }

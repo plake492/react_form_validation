@@ -1,3 +1,4 @@
+"use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -20,15 +21,17 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import * as React from 'react';
-import { checkIfAnyReactComponentType } from '../../utils/detectReactComponents';
-import { forceArray } from '../../utils/helpers';
-export default function FieldLabel(props) {
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = require("react");
+var detectReactComponents_1 = require("../../utils/detectReactComponents");
+var helpers_1 = require("../../utils/helpers");
+function FieldLabel(props) {
     var children = props.children, el = props.el, isRequired = props.isRequired, rest = __rest(props, ["children", "el", "isRequired"]);
     var Component = el !== null && el !== void 0 ? el : 'label';
-    var childrenAsArray = forceArray(children);
-    return (React.createElement(React.Fragment, null, childrenAsArray.map(function (child, index) { return (React.createElement(React.Fragment, { key: index }, checkIfAnyReactComponentType(child) ? (child) : (React.createElement(Component, __assign({}, rest),
+    var childrenAsArray = (0, helpers_1.forceArray)(children);
+    return (React.createElement(React.Fragment, null, childrenAsArray.map(function (child, index) { return (React.createElement(React.Fragment, { key: index }, (0, detectReactComponents_1.checkIfAnyReactComponentType)(child) ? (child) : (React.createElement(Component, __assign({}, rest),
         isRequired && React.createElement("span", null, "*"),
         child)))); })));
 }
+exports.default = FieldLabel;
 //# sourceMappingURL=FieldLabel.js.map

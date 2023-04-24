@@ -1,0 +1,25 @@
+@import './abstract/variables';
+@import './abstract/functions';
+@import './abstract/mixins/index.scss';
+
+@import './config/form-base-vars-config';
+
+@import './reset/';
+
+* * {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+  background-color: unset;
+  padding: unset;
+  border: unset;
+}
+
+@import './utils/columns';
+
+@import './components/';

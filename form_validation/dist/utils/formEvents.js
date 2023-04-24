@@ -1,4 +1,7 @@
-export var formEvents = function (_a) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.formEvents = void 0;
+var formEvents = function (_a) {
     var onChange = _a.onChange, onClick = _a.onClick, onBlur = _a.onBlur;
     var handleOnClick = function (event) {
         return onClick && onClick(event.target.value, event);
@@ -12,4 +15,5 @@ export var formEvents = function (_a) {
         onBlur: onBlur,
     };
 };
+exports.formEvents = formEvents;
 //# sourceMappingURL=formEvents.js.map

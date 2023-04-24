@@ -1,0 +1,34 @@
+$prefix: select;
+
+.select {
+  @include base-field-vars($prefix);
+  @include field-vars-with-text($prefix);
+  @include field-modifiers($prefix);
+  @include field-as-box-wtih-text($prefix);
+  @include message-styles($prefix);
+
+  &__container {
+    cursor: pointer;
+  }
+
+  &__field--unselected {
+    color: var(--select-field-placeholder-text-color);
+  }
+
+  &--date-picker {
+    --select-field-border-width: 0px;
+    --select-field-background-color: unset;
+
+    .select__field {
+      width: calc(var(--day-width) * 2);
+    }
+
+    .select__container {
+      &:hover:not(.readonly),
+      &:focus-within:not(.readonly) {
+        box-shadow: unset;
+        border-color: #eee;
+      }
+    }
+  }
+}

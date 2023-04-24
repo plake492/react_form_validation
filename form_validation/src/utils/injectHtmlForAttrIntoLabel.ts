@@ -66,9 +66,7 @@ const generateReactComponentStruture = ({
   if (currentPoint !== endingPoint) {
     return React.createElement(
       componentStructure[currentPoint].type,
-      {
-        ...componentStructure[currentPoint].props,
-      },
+      componentStructure[currentPoint].props,
       generateReactComponentStruture({
         componentStructure,
         endingPoint,

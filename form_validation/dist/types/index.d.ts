@@ -1,6 +1,7 @@
 import { ChangeEventHandler, FocusEventHandler, MouseEventHandler, ChangeEvent, MouseEvent, ReactElement, FormEvent, Dispatch, SetStateAction, MutableRefObject } from 'react';
 export type InputTypes = 'button' | 'checkbox' | 'color' | 'datetime-local' | 'email' | 'file' | 'hidden' | 'image' | 'month' | 'number' | 'password' | 'radio' | 'range' | 'reset' | 'search' | 'submit' | 'tel' | 'text' | 'time' | 'url' | 'week';
 export type rowSize = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl';
+export type formFieldLabelTyps = string | JSX.Element | ((id: string) => JSX.Element);
 type dateValidation = 'date-mm/dd/yyyy' | 'date-dd/mm/yyyy' | 'yyyy/mm/dd' | 'yy/mm/dd';
 type textValidationTypes = 'email' | 'password' | 'text' | Function;
 interface FormFieldEventHandlers<T> {
@@ -30,7 +31,7 @@ export interface FormPropTypes {
     excludeFieldFromConfirmPassword?: string | undefined;
 }
 export interface FormElementTypes<T> extends FormFieldEventHandlers<T> {
-    label: string | JSX.Element;
+    label: formFieldLabelTyps;
     id: string;
     placeholder?: string;
     ariaLabel?: string;
@@ -144,7 +145,6 @@ export interface OptionPropTypes {
     label: string;
     value?: string;
     disabled?: boolean;
-    selected?: boolean;
     isPlaceholder?: boolean;
 }
 export interface DatePickerTypes extends FormElementTypes<HTMLInputElement> {

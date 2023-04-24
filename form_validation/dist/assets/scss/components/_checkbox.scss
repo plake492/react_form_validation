@@ -1,0 +1,15 @@
+$prefix: checkbox;
+
+.checkbox {
+  @include base-field-vars($prefix);
+  @include field-vars-with-button($prefix);
+  @include field-modifiers($prefix, false);
+  @include field-as-button($prefix, box);
+  @include message-styles($prefix);
+
+  position: relative;
+  margin-bottom: var(--checkbox-margin-bottom);
+  display: flex;
+  align-items: start;
+  gap: 1rem;
+}

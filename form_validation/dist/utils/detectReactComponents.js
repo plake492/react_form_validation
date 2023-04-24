@@ -1,29 +1,39 @@
-import * as React from 'react';
-export var isClassComponent = function (component) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.checkIfAnyReactComponentType = exports.isCompositeTypeElement = exports.isDOMTypeElement = exports.isElement = exports.isReactComponent = exports.isFunctionComponent = exports.isClassComponent = void 0;
+var React = require("react");
+var isClassComponent = function (component) {
     return (typeof component === 'function' && !!component.prototype.isReactComponent);
 };
-export var isFunctionComponent = function (component) {
+exports.isClassComponent = isClassComponent;
+var isFunctionComponent = function (component) {
     return (typeof component === 'function' &&
         React.isValidElement(component()));
 };
-export var isReactComponent = function (component) {
-    return isClassComponent(component) || isFunctionComponent(component);
+exports.isFunctionComponent = isFunctionComponent;
+var isReactComponent = function (component) {
+    return (0, exports.isClassComponent)(component) || (0, exports.isFunctionComponent)(component);
 };
-export var isElement = function (element) {
+exports.isReactComponent = isReactComponent;
+var isElement = function (element) {
     return React.isValidElement(element);
 };
-export var isDOMTypeElement = function (element) {
-    return isElement(element) && typeof element.type === 'string';
+exports.isElement = isElement;
+var isDOMTypeElement = function (element) {
+    return (0, exports.isElement)(element) && typeof element.type === 'string';
 };
-export var isCompositeTypeElement = function (element) {
-    return isElement(element) && typeof element.type === 'function';
+exports.isDOMTypeElement = isDOMTypeElement;
+var isCompositeTypeElement = function (element) {
+    return (0, exports.isElement)(element) && typeof element.type === 'function';
 };
-export var checkIfAnyReactComponentType = function (value) {
-    return (isClassComponent(value) ||
-        isFunctionComponent(value) ||
-        isReactComponent(value) ||
-        isElement(value) ||
-        isDOMTypeElement(value) ||
-        isCompositeTypeElement(value));
+exports.isCompositeTypeElement = isCompositeTypeElement;
+var checkIfAnyReactComponentType = function (value) {
+    return ((0, exports.isClassComponent)(value) ||
+        (0, exports.isFunctionComponent)(value) ||
+        (0, exports.isReactComponent)(value) ||
+        (0, exports.isElement)(value) ||
+        (0, exports.isDOMTypeElement)(value) ||
+        (0, exports.isCompositeTypeElement)(value));
 };
+exports.checkIfAnyReactComponentType = checkIfAnyReactComponentType;
 //# sourceMappingURL=detectReactComponents.js.map
