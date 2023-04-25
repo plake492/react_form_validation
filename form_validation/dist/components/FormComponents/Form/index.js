@@ -33,7 +33,7 @@ var validFormComponentChildren_1 = require("../../../utils/validFormComponentChi
 var styleVars_1 = require("../../../utils/styleVars");
 var injectHtmlForAttrIntoLabel_1 = require("../../../utils/injectHtmlForAttrIntoLabel");
 function Form(_a) {
-    var children = _a.children, onSubmit = _a.onSubmit, noValidate = _a.noValidate, excludeFieldFromConfirmPassword = _a.excludeFieldFromConfirmPassword, wrapperClasses = _a.wrapperClasses, disableBtnError = _a.disableBtnError, disableSuccessIndicators = _a.disableSuccessIndicators, formId = _a.formId, formLabel = _a.formLabel, _b = _a.autoComplete, autoComplete = _b === void 0 ? 'off' : _b, _c = _a.gap, gap = _c === void 0 ? 'md' : _c, rowGap = _a.rowGap, colGap = _a.colGap, _d = _a.colorTheme, colorTheme = _d === void 0 ? 'dark' : _d, styleOptions = _a.styleOptions;
+    var children = _a.children, onSubmit = _a.onSubmit, noValidate = _a.noValidate, excludeFieldFromConfirmPassword = _a.excludeFieldFromConfirmPassword, wrapperClasses = _a.wrapperClasses, disableBtnError = _a.disableBtnError, disableSuccessIndicators = _a.disableSuccessIndicators, formId = _a.formId, formLabel = _a.formLabel, _b = _a.autoComplete, autoComplete = _b === void 0 ? 'off' : _b, _c = _a.gap, gap = _c === void 0 ? 'md' : _c, rowGap = _a.rowGap, colGap = _a.colGap, _d = _a.colorTheme, colorTheme = _d === void 0 ? 'dark' : _d, styleOptions = _a.styleOptions, submitButton = _a.submitButton;
     var _e = (0, useConfirmPasswordMatch_1.useConfirmPasswordMatch)({ children: children, excludeFieldFromConfirmPassword: excludeFieldFromConfirmPassword }), passwordMatchError = _e.passwordMatchError, handlePasswordMatchOnBlur = _e.handlePasswordMatchOnBlur, checkIfPasswordMatchIsNeeded = _e.checkIfPasswordMatchIsNeeded, updatePasswordValue = _e.updatePasswordValue, handlePasswordsMatch = _e.handlePasswordsMatch, passwordIDs = _e.passwordIDs;
     var _f = (0, useFormFieldsValidation_1.useFormFieldsValidation)({ children: children }), missingRequiredValue = _f.missingRequiredValue, updateRequiredFieldValue = _f.updateRequiredFieldValue, containesValidationError = _f.containesValidationError, checkFieldValidation = _f.checkFieldValidation, formItemValues = _f.formItemValues;
     var formRef = React.useRef();
@@ -146,11 +146,10 @@ function Form(_a) {
             ];
             return (React.createElement(React.Fragment, { key: id }, React.cloneElement.apply(React, __spreadArray([el, props], newChildren, false))));
         })),
-        React.createElement("div", { className: bem('btn-wrapper') },
-            React.createElement("button", { className: bem('submit-btn', [
-                    formError && !disableBtnError,
-                    'error',
-                ]), type: "submit" }, "Submit"))));
+        React.createElement("div", { className: bem('btn-wrapper') }, submitButton ? (submitButton) : (React.createElement("button", { className: bem('submit-btn', [
+                formError && !disableBtnError,
+                'error',
+            ]), type: "submit" }, "Submit")))));
 }
 exports.default = Form;
 //# sourceMappingURL=index.js.map
