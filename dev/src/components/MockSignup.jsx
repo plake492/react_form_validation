@@ -9,17 +9,17 @@ import {
 } from '@plake492/form-validation'
 
 export const MockSignup = function () {
-  // const formStyles = {
-  //   shadowColor: 'grey',
-  //   fieldBackgroundColor: 'blueviolet',
-  //   fieldTextColor: 'darkblue',
-  //   fieldPlaceholderTextColor: 'cornflower',
-  //   fieldBorderColor: 'indego',
-  //   fieldBorderColorFocus: 'orange',
-  //   labelTextColor: 'lime',
-  //   errorColor: 'red',
-  //   successColor: 'orange',
-  // };
+  const formStyles = {
+    shadowColor: 'grey',
+    fieldBackgroundColor: 'blueviolet',
+    fieldTextColor: 'darkblue',
+    fieldPlaceholderTextColor: 'cornflower',
+    fieldBorderColor: 'indego',
+    fieldBorderColorFocus: 'orange',
+    labelTextColor: 'lime',
+    errorColor: 'red',
+    successColor: 'orange',
+  }
 
   const [user, setUser] = React.useState({
     firstName: '',
@@ -63,7 +63,6 @@ export const MockSignup = function () {
         </>
       </div>
 
-      <div className="col-8">
         <Form
           onSubmit={(_, status) =>
             status ? alert('SINGUP SUBMITTED') : alert('signup error')
@@ -73,6 +72,7 @@ export const MockSignup = function () {
           autoComplete="on"
           formLabel="Signup form"
           colorTheme="dark"
+          submitButton={<button style={{ background: 'green' }}>HELLO</button>}
         >
           <Input
             type="text"

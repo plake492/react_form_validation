@@ -35,6 +35,7 @@ export default function Form({
   colGap,
   colorTheme = 'dark',
   styleOptions,
+  submitButton,
 }: FormPropTypes): JSX.Element {
   // Handles password matching
   const {
@@ -307,15 +308,19 @@ export default function Form({
       </div>
 
       <div className={bem('btn-wrapper')}>
-        <button
-          className={bem('submit-btn', [
-            formError && !disableBtnError,
-            'error',
-          ])}
-          type="submit"
-        >
-          Submit
-        </button>
+        {submitButton ? (
+          submitButton
+        ) : (
+          <button
+            className={bem('submit-btn', [
+              formError && !disableBtnError,
+              'error',
+            ])}
+            type="submit"
+          >
+            Submit
+          </button>
+        )}
       </div>
     </form>
   )

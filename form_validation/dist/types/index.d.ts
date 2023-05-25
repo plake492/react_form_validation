@@ -28,6 +28,7 @@ export interface FormPropTypes {
     styleOptions?: {
         [key: string]: string;
     };
+    submitButton?: ReactElement;
     excludeFieldFromConfirmPassword?: string | undefined;
 }
 export interface FormElementTypes<T> extends FormFieldEventHandlers<T> {

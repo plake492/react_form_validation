@@ -77,6 +77,7 @@ export interface FormPropTypes {
   colGap?: rowSize
   colorTheme?: 'dark' | 'light'
   styleOptions?: { [key: string]: string }
+  submitButton?: ReactElement
   /**
    *
    * A form id's with a password field that should be excluded from the
