@@ -43,30 +43,11 @@ export const MockSignup = function () {
 
   return (
     <div className="row" style={{ padding: '4rem' }}>
-      {/* <div
-        className="col-4"
-        style={{
-          top: 16,
-          borderRadius: '40px',
-          position: 'sticky',
-          height: '100%',
-        }}
-      >
-        <>
-          {`{`}
-          {Object.entries(user).map(([key, value]) => (
-            <p
-              className=" text-md pl-md mb-sm"
-              key={key}
-            >{`${key}: "${value}",`}</p>
-          ))}
-          {`}`}
-        </>
-      </div> */}
-
       <Form
         onSubmit={(_, status) =>
-          status ? alert('SINGUP SUBMITTED') : alert('signup error')
+          status
+            ? alert('SINGUP SUBMITTED:: ' + JSON.stringify(user))
+            : alert('signup error')
         }
         formId="signup-form"
         noValidate
@@ -222,6 +203,17 @@ export const MockSignup = function () {
             setUser((prev: any) => ({ ...prev, ['tos']: !prev['tos'] }))
           }
         />
+        <button
+          style={{
+            padding: 8,
+            background: '#ccc',
+            border: '1px solid #fff',
+            borderRadius: 8,
+          }}
+          type="submit"
+        >
+          Submit
+        </button>
       </Form>
     </div>
   )

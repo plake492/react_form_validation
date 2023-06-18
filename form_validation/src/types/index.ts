@@ -85,12 +85,13 @@ export interface FormPropTypes {
    * to a form contianing (Old | Previous) password, New password, and
    * Confirm new Password fields, where the (Old | Previous) password would be excluded
    */
-  excludeFieldFromConfirmPassword?: string | undefined
+  excludeFieldFromConfirmPassword?: string[] | string | undefined
 }
 
 export interface FormElementTypes<T> extends FormFieldEventHandlers<T> {
   label: formFieldLabelTyps
   id: string
+  name?: string
   placeholder?: string
   ariaLabel?: string
   wrapperClasses?: string

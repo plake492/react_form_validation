@@ -1,6 +1,9 @@
 import * as React from 'react'
 
-export type HTMLFormEventElements = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+export type HTMLFormEventElements =
+  | HTMLInputElement
+  | HTMLTextAreaElement
+  | HTMLSelectElement
 
 interface FormEventPropTypes<T> {
   onChange: (v: string | number | boolean, e?: React.ChangeEvent) => void

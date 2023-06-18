@@ -12,7 +12,7 @@ export const useConfirmPasswordMatch = ({
   excludeFieldFromConfirmPassword,
 }: {
   children: React.ReactElement[] | React.ReactElement
-  excludeFieldFromConfirmPassword: string | undefined
+  excludeFieldFromConfirmPassword: string[] | string | undefined
 }) => {
   const elements: React.ReactElement[] = forceArray(children)
 
@@ -27,13 +27,28 @@ export const useConfirmPasswordMatch = ({
     string | React.JSXElementConstructor<any>
   >[] = React.useMemo(
     () =>
-      elements.filter(
-        (el) =>
-          el.props.type === 'password' &&
-          el.props.id !== excludeFieldFromConfirmPassword
-      ),
+      elements.filter((el) => {
+        console.log('el ==>', el)
+
+        if (excludeFieldFromConfirmPassword) {
+          if (Array.isArray(excludeFieldFromConfirmPassword)) {
+            return (
+              el.props.type === 'password' &&
+              !excludeFieldFromConfirmPassword.includes(el.props.id)
+            )
+          } else if (typeof excludeFieldFromConfirmPassword === 'string') {
+            return (
+              el.props.type === 'password' &&
+              el.props.id !== excludeFieldFromConfirmPassword
+            )
+          }
+        }
+
+        return el.props.type === 'password'
+      }),
     []
   )
+  console.log('passwordElements ==>', passwordElements)
 
   // Track the matching state of the password and password confirm
   const [passwordMatchError, setPasswordMatchError] =
@@ -54,13 +69,14 @@ export const useConfirmPasswordMatch = ({
     () => Object.keys(passwordCheckObject),
     [passwordCheckObject]
   )
+  console.log('passwordIDs ==>', passwordIDs)
 
   /**
    * Initialize the password check state with the password and confirmPassword
    * as keys containing an obj with 'value', and 'isTouched' properties
    */
   React.useEffect(() => {
-    if (passwordElements && passwordElements.length === 2) {
+    if (passwordElements && passwordElements.length > 1) {
       // Create the password check object
       setPasswordCheckObj(
         passwordElements.reduce(

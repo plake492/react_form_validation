@@ -94,6 +94,14 @@ export const useFormFieldsValidation = ({
     const validation: InputTypes | Function =
       validationType || (type in formValidation && type) || 'text'
 
+    if (!shouldValidate) {
+      return true
+    }
+
+    if (!shouldValidate && isRequired) {
+      return !!value
+    }
+
     if (isTouched && (shouldValidate || isRequired)) {
       // Run a validation check on the input
       let validationTest: RegExp | Function

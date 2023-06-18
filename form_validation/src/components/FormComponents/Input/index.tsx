@@ -85,6 +85,7 @@ export default function Input({
   forwardRef,
   styles,
   hideLabel,
+  name,
 }: InputPropTypes): JSX.Element {
   const [showPassword, setShowPassword] = React.useState<boolean>(false)
   // Set up function for handling styles
@@ -160,6 +161,7 @@ export default function Input({
           className={bem('field')}
           type={inputType}
           id={fieldId}
+          name={name}
           aria-label={ariaLabel ?? placeholder}
           placeholder={placeholder}
           readOnly={isReadOnly}

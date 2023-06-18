@@ -294,7 +294,7 @@ export default function Form({
              * !This assumes that the confirm password field
              * !will be the last password field present
              */
-            passwordMatchError && id === passwordIDs[1] ? (
+            passwordMatchError && id === passwordIDs[passwordIDs.length - 1] ? (
               <PasswordMatchErrorMessage />
             ) : null,
           ]
@@ -307,7 +307,7 @@ export default function Form({
         })}
       </div>
 
-      <div className={bem('btn-wrapper')}>
+      {/* <div className={bem('btn-wrapper')}>
         {submitButton ? (
           submitButton
         ) : (
@@ -321,7 +321,7 @@ export default function Form({
             Submit
           </button>
         )}
-      </div>
+      </div> */}
     </form>
   )
 }
