@@ -60,7 +60,7 @@ export const MockSignup = function () {
         <Input
           type="text"
           value={user.firstName}
-          onChange={(v) =>
+          onChange={(_, v) =>
             setUser((prev: any) => ({ ...prev, ['firstName']: v }))
           }
           label="First Name"
@@ -71,7 +71,7 @@ export const MockSignup = function () {
         <Input
           type="text"
           value={user.lastName}
-          onChange={(v) =>
+          onChange={(_, v) =>
             setUser((prev: any) => ({ ...prev, ['lastName']: v }))
           }
           label="Last Name"
@@ -83,7 +83,9 @@ export const MockSignup = function () {
         <Input
           type="email"
           value={user.email}
-          onChange={(v) => setUser((prev: any) => ({ ...prev, ['email']: v }))}
+          onChange={(_, v) =>
+            setUser((prev: any) => ({ ...prev, ['email']: v }))
+          }
           label="email"
           id="email"
           isRequired
@@ -91,7 +93,9 @@ export const MockSignup = function () {
         <Input
           type="tel"
           value={user.phone}
-          onChange={(v) => setUser((prev: any) => ({ ...prev, ['phone']: v }))}
+          onChange={(_, v) =>
+            setUser((prev: any) => ({ ...prev, ['phone']: v }))
+          }
           label="phone"
           id="phone"
           shouldValidate
@@ -104,7 +108,7 @@ export const MockSignup = function () {
           placeholder="1234 Park Place"
           value={user.address}
           isRequired
-          onChange={(v) =>
+          onChange={(_, v) =>
             setUser((prev: any) => ({ ...prev, ['address']: v }))
           }
           message={'This would be an address'}
@@ -115,7 +119,7 @@ export const MockSignup = function () {
           id="address-line-two"
           placeholder="APT 2"
           value={user.addressTwo}
-          onChange={(v) =>
+          onChange={(_, v) =>
             setUser((prev: any) => ({ ...prev, ['addressTwo']: v }))
           }
           col={6}
@@ -127,7 +131,7 @@ export const MockSignup = function () {
           placeholder="12345"
           isRequired
           value={user.zipcode}
-          onChange={(v) =>
+          onChange={(_, v) =>
             setUser((prev: any) => ({ ...prev, ['zipcode']: v }))
           }
           validationType={validateZipCode}
@@ -138,7 +142,7 @@ export const MockSignup = function () {
           startDate={new Date('01/01/1990')}
           label="Date of birth"
           id="dob"
-          onChange={(v) => setUser((prev: any) => ({ ...prev, ['dob']: v }))}
+          onChange={(_, v) => setUser((prev: any) => ({ ...prev, ['dob']: v }))}
           value={user.dob}
           isRequired
           autocomplete="on"
@@ -150,7 +154,9 @@ export const MockSignup = function () {
           label="Gender"
           id="gender"
           value={user.gender}
-          onChange={(v) => setUser((prev: any) => ({ ...prev, ['gender']: v }))}
+          onChange={(_, v) =>
+            setUser((prev: any) => ({ ...prev, ['gender']: v }))
+          }
           options={[{ label: 'Male' }, { label: 'Female' }, { label: 'other' }]}
           col={6}
           isRequired
@@ -158,7 +164,7 @@ export const MockSignup = function () {
         <Input
           type="password"
           value={user.password}
-          onChange={(v) =>
+          onChange={(_, v) =>
             setUser((prev: any) => ({ ...prev, ['password']: v }))
           }
           label="Password"
@@ -168,7 +174,7 @@ export const MockSignup = function () {
         <Input
           type="password"
           value={user.passwordConfirm}
-          onChange={(v) =>
+          onChange={(_, v) =>
             setUser((prev: any) => ({ ...prev, ['passwordConfirm']: v }))
           }
           label="Confirm Password"
@@ -183,7 +189,9 @@ export const MockSignup = function () {
             { id: 'food2', label: 'Lobster', value: 'lobster' },
             { id: 'food3', label: 'Sushi', value: 'sushi' },
           ]}
-          onChange={(v) => setUser((prev: any) => ({ ...prev, ['food']: v }))}
+          onChange={(_, v) =>
+            setUser((prev: any) => ({ ...prev, ['food']: v }))
+          }
         />
         <Checkbox
           label={

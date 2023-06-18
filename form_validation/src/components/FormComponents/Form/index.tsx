@@ -166,6 +166,8 @@ export default function Form({
           let isValid: boolean = true
 
           if (isRequired || shouldValidate) {
+            console.log('id, value ==>', id, value)
+
             updateRequiredFieldValue({ id, value })
 
             isValid = checkFieldValidation({
@@ -201,12 +203,18 @@ export default function Form({
           }
 
           // Add additional logic to onChange
-          const onChangeProp = (value: string | number, e?: any): void => {
+          const onChangeProp = (
+            e: React.ChangeEvent,
+            value: string | number
+          ): void => {
+            console.log('e,  ==>', e)
+            console.log('value,  ==>', value)
+
             // Check if password match vaidation is needed
             if (checkIfPasswordMatchIsNeeded({ id })) {
               handlePasswordsMatch({ id, value })
             }
-            return onChange && onChange(value, e)
+            return onChange && onChange(e, value)
           }
 
           // For required fields with no value, pass an error state

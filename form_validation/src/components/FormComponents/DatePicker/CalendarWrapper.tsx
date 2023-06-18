@@ -119,7 +119,9 @@ export default function CalendarWrapper({
             <Calender
               key={index}
               date={addMonths(currentFocusedDate, index)}
-              onChange={(v: Date): void => onChange(format(v, 'MM/dd/yyyy'))}
+              onChange={(_: never, v: Date): void =>
+                onChange(_, format(v, 'MM/dd/yyyy'))
+              }
               selectedDay={value}
               setCurrentFocusedDate={setCurrentFocusedDate}
               monthAndYearAreSelectable={monthAndYearAreSelectable}

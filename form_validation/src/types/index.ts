@@ -50,8 +50,8 @@ type dateValidation =
 type textValidationTypes = 'email' | 'password' | 'text' | Function
 
 interface FormFieldEventHandlers<T> {
-  onChange?: (v: string | number | boolean, e?: ChangeEvent) => void
-  onClick?: (v: string | number | boolean, e?: MouseEvent) => void
+  onChange?: (e: ChangeEvent, v: string | number | boolean) => void
+  onClick?: (e: MouseEvent, v: string | number | boolean) => void
   onBlur?: FocusEventHandler<T>
 }
 

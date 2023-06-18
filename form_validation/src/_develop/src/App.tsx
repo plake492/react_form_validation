@@ -7,7 +7,7 @@ export default function App() {
   return (
     <main className="bg-grey-30">
       <section style={{ backgroundColor: '#222' }}>
-        {/* <MockSignup /> */}
+        <MockSignup />
       </section>
       <section style={{ backgroundColor: '#ddd' }}>
         <MockUpdatePasswordWithOldPassword />

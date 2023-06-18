@@ -28,8 +28,6 @@ export const useConfirmPasswordMatch = ({
   >[] = React.useMemo(
     () =>
       elements.filter((el) => {
-        console.log('el ==>', el)
-
         if (excludeFieldFromConfirmPassword) {
           if (Array.isArray(excludeFieldFromConfirmPassword)) {
             return (
@@ -48,7 +46,6 @@ export const useConfirmPasswordMatch = ({
       }),
     []
   )
-  console.log('passwordElements ==>', passwordElements)
 
   // Track the matching state of the password and password confirm
   const [passwordMatchError, setPasswordMatchError] =
@@ -69,7 +66,6 @@ export const useConfirmPasswordMatch = ({
     () => Object.keys(passwordCheckObject),
     [passwordCheckObject]
   )
-  console.log('passwordIDs ==>', passwordIDs)
 
   /**
    * Initialize the password check state with the password and confirmPassword

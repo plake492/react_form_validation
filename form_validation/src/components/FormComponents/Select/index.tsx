@@ -54,12 +54,12 @@ export default function Select({
 
   // This allows us to set a value when the select el is clicked in the even
   // that the defualt placeholder has been disabled
-  const handleOnClick = (v: string): void => {
+  const handleOnClick = (_: never, v: string): void => {
     if (removePlaceholder && onChange) {
-      onChange(v)
+      onChange(_, v)
     }
     if (onClick) {
-      onClick(v)
+      onClick(_, v)
     }
   }
   // Set up function for handling styles
