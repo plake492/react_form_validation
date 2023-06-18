@@ -1,15 +1,11 @@
 import * as React from 'react'
 
-import MockSignup from './components/TestComponents/MockSignup'
-import TestForm from './components/TestComponents/TestForm'
+import { MockSignup } from './components/MockSignup'
 
 export default function App() {
   return (
-    <main>
+    <main className="bg-grey-30" style={{ backgroundColor: '#222' }}>
       <MockSignup />
-      {/* <div style={{ backgroundColor: '#222222', padding: '4rem 0' }}>
-        <TestForm />
-      </div> */}
     </main>
   )
 }

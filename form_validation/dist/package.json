@@ -1,20 +1,32 @@
 {
   "name": "@plake492/form-validation",
-  "version": "1.1.7",
-  "main": "./dist/index.d.ts",
-  "module": "./dist/index.d.ts",
+  "version": "1.0.2",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
+  "types": "./esm/index.d.ts",
   "license": "MIT",
   "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plake492/react_form_validation.git"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "dev": "webpack-dev-server --open --mode development --hot",
-    "build": "npm run clean && yarn build:tsc && yarn copy-project-files && yarn copy-sass && yarn fix-package.json && yarn sass && yarn postcss-prod",
+    "build": "npm run clean && yarn build:esm && yarn build:cjs && yarn copy:package && yarn copy-sass && yarn sass && yarn postcss-prod",
     "clean": "rm -rf dist",
-    "build:tsc": "tsc",
-    "copy-project-files": "cp package.json README.md ./dist ",
-    "fix-package.json": "sed -i -- 's/index.d.ts/index.d.ts/g' ./dist/package.json",
-    "sass": "sass --style=compressed src/assets/scss/index.scss:dist/assets/css/index.css",
+    "build:esm": "tsc",
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
+    "copy:package": "cp package.json ./dist",
+    "sass": "yarn sass:esm && yarn sass:cjs",
+    "sass:esm": "sass --style=compressed src/assets/scss/index.scss:dist/esm/assets/css/index.css",
+    "sass:cjs": "sass --style=compressed src/assets/scss/index.scss:dist/cjs/assets/css/index.css",
     "postcss-prod": "node postcssConfig.js",
-    "copy-sass": " cp -R src/assets ./dist/assets",
+    "copy-sass": "cp -R src/assets ./dist/cjs/assets && cp -R src/assets ./dist/esm/assets",
     "pub": "yarn build && yarn publish ./dist --access public"
   },
   "devDependencies": {
@@ -32,6 +44,7 @@
     "postcss-combine-media-query": "^1.0.1",
     "postcss-nested": "^6.0.0",
     "postcss-sort-media-queries": "^4.3.0",
+    "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.59.3",
     "sass-loader": "^13.2.0",
@@ -49,7 +62,8 @@
     "react-transition-group": "^4.4.5"
   },
   "peerDependencies": {
-    "react": "^18.2.0"
+    "react": ">=18.2.0",
+    "react-dom": ">=18.2.0"
   },
   "prettier": {
     "semi": false,

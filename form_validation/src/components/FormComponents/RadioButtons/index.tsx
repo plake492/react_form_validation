@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { useBemify } from '../../../hooks/useBemify';
-import FieldLabel from '../../BaseComponents/FieldLabel';
-import { useFormFieldMessages } from '../../../hooks/useFormFieldMessages';
-import { formEvents } from '../../../utils/formEvents';
-import { RadioButtonsPropTypes, RadioPropTypes } from '../../../types';
+import * as React from 'react'
+import { useBemify } from '../../../hooks/useBemify'
+import FieldLabel from '../../BaseComponents/FieldLabel'
+import { useFormFieldMessages } from '../../../hooks/useFormFieldMessages'
+import { formEvents } from '../../../utils/formEvents'
+import { RadioButtonsPropTypes, RadioPropTypes } from '../../../types'
 
 const Radio = function ({
   name,
@@ -17,11 +17,11 @@ const Radio = function ({
   type = 'radio',
 }: RadioPropTypes): JSX.Element {
   // If no value is provided, the label will also be the value
-  const radioValue: string | number = value ?? label;
+  const radioValue: string | number = value ?? label
 
-  const radioButtonId: string = formGroupId ? `${formGroupId}__${id}` : id;
+  const radioButtonId: string = formGroupId ? `${formGroupId}__${id}` : id
 
-  const bem = useBemify('radio');
+  const bem = useBemify('radio')
 
   return (
     <div className={bem('')}>
@@ -42,8 +42,8 @@ const Radio = function ({
         {label}
       </label>
     </div>
-  );
-};
+  )
+}
 
 export default function RadioButtons({
   label,
@@ -68,7 +68,7 @@ export default function RadioButtons({
   columnClass,
 }: RadioButtonsPropTypes): JSX.Element {
   // Set up function for handling styles
-  const bem: Function = useBemify('radio-buttons');
+  const bem = useBemify('radio-buttons')
 
   // Get messages as needed
   const messages: JSX.Element = useFormFieldMessages({
@@ -76,17 +76,17 @@ export default function RadioButtons({
     children,
     bem,
     forceMessageClass: true,
-  });
+  })
 
   // Renaming value allows the Form wrapper to stil
   // recieve a value prop to this child component
-  const checked: string | number | undefined = value;
+  const checked: string | number | undefined = value
 
   const events = formEvents<HTMLInputElement>({
     onChange,
     onClick,
     onBlur,
-  });
+  })
 
   return (
     <fieldset
@@ -100,7 +100,7 @@ export default function RadioButtons({
         [!shouldHideStatus && hasError, 'error']
       )}
       style={{
-        ...(!!styles ? (styles as React.CSSProperties) : {}),
+        ...(styles ? (styles as React.CSSProperties) : {}),
       }}
     >
       <FieldLabel className={bem('label')} isRequired={isRequired} el="legend">
@@ -123,5 +123,5 @@ export default function RadioButtons({
       </div>
       <div className={bem('message-wrapper')}>{messages}</div>
     </fieldset>
-  );
+  )
 }

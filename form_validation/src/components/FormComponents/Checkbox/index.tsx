@@ -1,9 +1,9 @@
-import * as React from 'react';
-import FieldLabel from '../../BaseComponents/FieldLabel';
-import { useBemify } from '../../../hooks/useBemify';
-import { useFormFieldMessages } from '../../../hooks/useFormFieldMessages';
-import { formEvents } from '../../../utils/formEvents';
-import { CheckboxPropTypes } from '../../../types';
+import * as React from 'react'
+import FieldLabel from '../../BaseComponents/FieldLabel'
+import { useBemify } from '../../../hooks/useBemify'
+import { useFormFieldMessages } from '../../../hooks/useFormFieldMessages'
+import { formEvents } from '../../../utils/formEvents'
+import { CheckboxPropTypes } from '../../../types'
 
 export default function Checkbox({
   type = 'checkbox',
@@ -30,7 +30,7 @@ export default function Checkbox({
   styles,
 }: CheckboxPropTypes) {
   // Set up function for handling styles
-  const bem: Function = useBemify('checkbox');
+  const bem: Function = useBemify('checkbox')
 
   // Get messages as needed
   const messages: JSX.Element = useFormFieldMessages({
@@ -38,9 +38,9 @@ export default function Checkbox({
     children,
     bem,
     forceMessageClass: true,
-  });
+  })
 
-  const events = formEvents<HTMLInputElement>({ onChange, onClick, onBlur });
+  const events = formEvents<HTMLInputElement>({ onChange, onClick, onBlur })
 
   return (
     <div
@@ -78,5 +78,5 @@ export default function Checkbox({
         <div className={bem('message-wrapper')}>{messages}</div>
       </div>
     </div>
-  );
+  )
 }

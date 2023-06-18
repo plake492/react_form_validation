@@ -291,8 +291,8 @@ export default function Form({
               <RequiredFieldErrorMessage label={messageLabel} />
             ) : null,
             /**
-             * This assumes that the confirm password field
-             * will be the last password field present
+             * !This assumes that the confirm password field
+             * !will be the last password field present
              */
             passwordMatchError && id === passwordIDs[1] ? (
               <PasswordMatchErrorMessage />
