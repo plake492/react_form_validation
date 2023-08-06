@@ -24,6 +24,7 @@ export default function Form({
   colGap,
   colorTheme = 'dark',
   styleOptions,
+  disbalePasswordConfirmation,
 }: FormPropTypes): JSX.Element {
   // Force children to be an array
   // Extract the children from any fragments
@@ -60,8 +61,9 @@ export default function Form({
     handlePasswordsMatch,
     passwordIDs,
   } = useConfirmPasswordMatch({
-    children: elements,
+    elements,
     excludeFieldFromConfirmPassword,
+    disbalePasswordConfirmation,
   })
 
   React.useEffect((): void => {
@@ -141,6 +143,7 @@ export default function Form({
             formItemValues={formItemValues}
             formError={formError}
             formGroupId={formGroupId}
+            disbalePasswordConfirmation={disbalePasswordConfirmation}
           />
         ))}
       </div>

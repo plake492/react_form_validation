@@ -13,23 +13,26 @@ import { validFormComponentChildren } from '../../../utils/validFormComponentChi
 import { setStyles } from '../../../utils/styleVars'
 import { setLabelHtmlForAttr } from '../../../utils/injectHtmlForAttrIntoLabel'
 
-export default function Children({
-  el,
-  index,
-  disableSuccessIndicators,
-  handlePasswordMatchOnBlur,
-  checkIfPasswordMatchIsNeeded,
-  updatePasswordValue,
-  handlePasswordsMatch,
-  passwordIDs,
-  passwordMatchError,
-  checkFieldValidation,
-  formSubmissionAttempted,
-  updateRequiredFieldValue,
-  formItemValues,
-  formError,
-  formGroupId,
-}: any) {
+export default function Children(
+  {
+    el,
+    index,
+    disableSuccessIndicators,
+    handlePasswordMatchOnBlur,
+    checkIfPasswordMatchIsNeeded,
+    updatePasswordValue,
+    handlePasswordsMatch,
+    passwordIDs,
+    passwordMatchError,
+    checkFieldValidation,
+    formSubmissionAttempted,
+    updateRequiredFieldValue,
+    formItemValues,
+    formError,
+    formGroupId,
+    disbalePasswordConfirmation,
+  }: any /** // TODO Update this type def */
+) {
   const {
     id,
     value,
@@ -139,18 +142,16 @@ export default function Children({
     passwordMatchIsSucces: boolean,
     passwordMatchProps: {}
 
-  if (id.includes('password') || type === 'password') {
-    console.log('\n==============================================')
-    console.log('id ==>', id)
-
+  if (
+    (!disbalePasswordConfirmation && id.includes('password')) ||
+    type === 'password'
+  ) {
     // Pasword error
     passwordMatchHasError =
       hasError || passwordMatchError || (!value && formError)
-    console.log('passwordMatchHasError ==>', passwordMatchHasError)
 
     // Password is valide
     passwordMatchIsValid = isValid && !passwordMatchError
-    console.log('passwordMatchIsValid ==>', passwordMatchIsValid)
 
     // Password match is successful
     passwordMatchIsSucces =
@@ -159,7 +160,6 @@ export default function Children({
       !!value &&
       isValid &&
       !passwordMatchError
-    console.log('passwordMatchIsSucces ==>', passwordMatchIsSucces)
 
     // Handle Password specific props
     passwordMatchProps = {
@@ -171,7 +171,6 @@ export default function Children({
           }
         : {}),
     }
-    console.log('passwordMatchProps ==>', passwordMatchProps)
   }
 
   /******************************************************************************/

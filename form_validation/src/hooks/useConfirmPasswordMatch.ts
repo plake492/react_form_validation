@@ -8,14 +8,14 @@ interface IdValueProps {
 }
 
 export const useConfirmPasswordMatch = ({
-  children,
+  elements,
   excludeFieldFromConfirmPassword,
+  disbalePasswordConfirmation,
 }: {
-  children: React.ReactElement[]
+  elements: React.ReactElement[]
   excludeFieldFromConfirmPassword: string[] | string | undefined
+  disbalePasswordConfirmation?: boolean
 }) => {
-  const elements: React.ReactElement[] = forceArray(children)
-
   // ****************************** STATE ****************************** //
   /**
    * Memoizing this prevents any type change to
@@ -27,24 +27,26 @@ export const useConfirmPasswordMatch = ({
     string | React.JSXElementConstructor<any>
   >[] = React.useMemo(
     () =>
-      elements.filter((el) => {
-        if (excludeFieldFromConfirmPassword) {
-          if (Array.isArray(excludeFieldFromConfirmPassword)) {
-            return (
-              el.props.type === 'password' &&
-              !excludeFieldFromConfirmPassword.includes(el.props.id)
-            )
-          } else if (typeof excludeFieldFromConfirmPassword === 'string') {
-            return (
-              el.props.type === 'password' &&
-              el.props.id !== excludeFieldFromConfirmPassword
-            )
-          }
-        }
+      !disbalePasswordConfirmation
+        ? elements.filter((el) => {
+            if (excludeFieldFromConfirmPassword) {
+              if (Array.isArray(excludeFieldFromConfirmPassword)) {
+                return (
+                  el.props.type === 'password' &&
+                  !excludeFieldFromConfirmPassword.includes(el.props.id)
+                )
+              } else if (typeof excludeFieldFromConfirmPassword === 'string') {
+                return (
+                  el.props.type === 'password' &&
+                  el.props.id !== excludeFieldFromConfirmPassword
+                )
+              }
+            }
 
-        return el.props.type === 'password'
-      }),
-    [children.length]
+            return el.props.type === 'password'
+          })
+        : [],
+    [disbalePasswordConfirmation, elements.length]
   )
 
   // Track the matching state of the password and password confirm
@@ -74,20 +76,29 @@ export const useConfirmPasswordMatch = ({
   React.useEffect(() => {
     if (passwordElements && passwordElements.length > 1) {
       // Create the password check object
-      setPasswordCheckObj(
-        passwordElements.reduce(
-          (acc, cur) => ({
-            ...acc,
-            [cur.props.id]: {
-              value: cur.props.value,
-              /* Assume that the presence of a value means this field has been touched */
-              isTouched: !!cur.props.value,
-            },
-          }),
-          {}
-        )
+      const pElements = passwordElements.reduce(
+        (acc, cur) => ({
+          ...acc,
+          [cur.props.id]: {
+            value: cur.props.value,
+            /* Assume that the presence of a value means this field has been touched */
+            isTouched: !!cur.props.value,
+          },
+        }),
+        {}
       )
+
+      // ! Only allows two fields to be compared
+      const [password, confirmPassword]: { value: string }[] =
+        Object.values(pElements)
+      if (password.value !== confirmPassword.value) {
+        setPasswordMatchError(true)
+      }
+
+      setPasswordCheckObj(pElements)
     } else {
+      // If the password elements are not present, reset the state
+      // Prevents conditioanlly rendered fields to stop a form from submitting if they are not present
       setPasswordCheckObj({})
       setPasswordMatchError(false)
     }
