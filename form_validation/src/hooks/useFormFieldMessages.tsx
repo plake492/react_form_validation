@@ -1,14 +1,15 @@
-import * as React from 'react';
-import FadeInComponent from '../components/BaseComponents/FadeInComponent';
-import { checkIfAnyReactComponentType } from '../utils/detectReactComponents';
+import * as React from 'react'
+import FadeInComponent from '../components/BaseComponents/FadeInComponent'
+import { checkIfAnyReactComponentType } from '../utils/detectReactComponents'
 
 interface PropTypes {
-  bem: Function;
-  children: React.ReactElement;
-  message?: string | JSX.Element | string[];
-  forceMessageClass?: boolean;
+  bem: Function
+  children: React.ReactElement
+  message?: string | JSX.Element | string[]
+  forceMessageClass?: boolean
 }
 
+//
 export const useFormFieldMessages = ({
   message,
   children,
@@ -16,14 +17,14 @@ export const useFormFieldMessages = ({
   forceMessageClass,
 }: PropTypes): JSX.Element => {
   const hasValidChildren =
-    Array.isArray(children) && children.some((child) => !!child);
+    Array.isArray(children) && children.some((child) => !!child)
 
-  const [showChildMessage, setShowChildMessage] = React.useState(false);
+  const [showChildMessage, setShowChildMessage] = React.useState(false)
 
   React.useEffect(
     () => setShowChildMessage(hasValidChildren),
     [hasValidChildren]
-  );
+  )
 
   return !!message || hasValidChildren ? (
     <div
@@ -44,5 +45,5 @@ export const useFormFieldMessages = ({
         <span>{children}</span>
       </FadeInComponent>
     </div>
-  ) : null;
-};
+  ) : null
+}

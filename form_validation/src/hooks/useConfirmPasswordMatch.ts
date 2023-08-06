@@ -11,7 +11,7 @@ export const useConfirmPasswordMatch = ({
   children,
   excludeFieldFromConfirmPassword,
 }: {
-  children: React.ReactElement[] | React.ReactElement
+  children: React.ReactElement[]
   excludeFieldFromConfirmPassword: string[] | string | undefined
 }) => {
   const elements: React.ReactElement[] = forceArray(children)
@@ -44,7 +44,7 @@ export const useConfirmPasswordMatch = ({
 
         return el.props.type === 'password'
       }),
-    []
+    [children.length]
   )
 
   // Track the matching state of the password and password confirm
@@ -78,11 +78,18 @@ export const useConfirmPasswordMatch = ({
         passwordElements.reduce(
           (acc, cur) => ({
             ...acc,
-            [cur.props.id]: { value: cur.props.value, isTouched: false },
+            [cur.props.id]: {
+              value: cur.props.value,
+              /* Assume that the presence of a value means this field has been touched */
+              isTouched: !!cur.props.value,
+            },
           }),
           {}
         )
       )
+    } else {
+      setPasswordCheckObj({})
+      setPasswordMatchError(false)
     }
   }, [passwordElements])
 

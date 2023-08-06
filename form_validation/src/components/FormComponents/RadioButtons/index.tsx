@@ -62,10 +62,10 @@ export default function RadioButtons({
   onChange,
   onClick,
   onBlur,
-  fieldId,
   styles,
   children,
   columnClass,
+  name,
 }: RadioButtonsPropTypes): JSX.Element {
   // Set up function for handling styles
   const bem = useBemify('radio-buttons')
@@ -113,7 +113,7 @@ export default function RadioButtons({
             id={id}
             label={label}
             value={value}
-            name={fieldId}
+            name={name}
             checked={checked}
             formGroupId={formGroupId}
             isDisabled={isDisabled}

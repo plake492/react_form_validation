@@ -15,7 +15,7 @@ import MonthAndYearSelection from './MonthAndYearSelection'
 interface CalendarProps {
   date: Date
   selectedDay: Date | string
-  onChange: (e: React.ChangeEvent, v: Date) => void
+  onChange: (v: Date) => void
   setCurrentFocusedDate: React.Dispatch<React.SetStateAction<Date>>
   monthAndYearAreSelectable?: boolean
 }
@@ -110,9 +110,9 @@ export default function Calender({
               <span
                 key={date.toString() + index}
                 tabIndex={0}
-                onClick={() => onChange(_, date)}
+                onClick={() => onChange(date)}
                 onKeyDown={(e: React.KeyboardEvent<HTMLSpanElement>) =>
-                  e.key === 'Enter' && onChange(_, date)
+                  e.key === 'Enter' && onChange(date)
                 }
                 className={bem('day', [isSelectedDate, 'selected'])}
               >

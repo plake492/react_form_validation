@@ -9,8 +9,6 @@ export const MockUpdatePasswordWithOldPassword = function () {
   })
 
   const handleChange = (e: any) => {
-    console.log('e ==>', e)
-
     const { name, value } = e.target
     setPass((prev) => ({ ...prev, [name]: value }))
   }
@@ -18,7 +16,7 @@ export const MockUpdatePasswordWithOldPassword = function () {
   return (
     <div className="row" style={{ padding: '4rem' }}>
       <Form
-        colorTheme="light"
+        colorTheme="dark"
         onSubmit={(_, v) => (v ? alert('Good Job') : alert('NOPE'))}
         // ? This is needed to prevent the old password
         // ? from being checked for equal value agains the new password

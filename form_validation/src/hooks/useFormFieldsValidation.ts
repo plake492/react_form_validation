@@ -11,26 +11,33 @@ interface IdValueProps {
 export const useFormFieldsValidation = ({
   children,
 }: {
-  children: React.ReactElement[] | React.ReactElement
+  children: React.ReactElement[]
 }) => {
   const elements: React.ReactElement[] = forceArray(children)
 
   // Find the required children of the form
+  // Watch for changes to the children in the event that a new child is added
   const requiredElements: React.ReactElement<
     any,
     string | React.JSXElementConstructor<any>
   >[] = React.useMemo(
     () =>
       elements.filter((el) => el.props.isRequired || el.props.shouldValidate),
-    []
+    [children.length]
   )
 
   const [formItemValues, setFormItemValues] = React.useState<{
     [key: string]: { [key: string]: string | number | null | boolean }
   }>({})
 
+  // Create an object to track the validation of each required field
+  // EX: {
+  //  first-name: {value: '', isValid: true, isRequired: true},
+  //  email: {value: 'email', isValid: false, isRequired: true}
+  //  ...
+  // }
   React.useEffect(() => {
-    if (requiredElements && requiredElements.length > 0) {
+    if (requiredElements) {
       setFormItemValues(
         requiredElements.reduce(
           (acc, cur) => ({
@@ -47,16 +54,19 @@ export const useFormFieldsValidation = ({
     }
   }, [requiredElements])
 
-  const elementsTracked = Object.values(formItemValues)
-
-  const missingRequiredValue: boolean = elementsTracked
+  // Check if any required fields are missing a value
+  const missingRequiredValue: boolean = Object.values(formItemValues)
     .filter(({ isRequired }: { isRequired: boolean }) => isRequired)
     .some(({ value }: { value: string | number | boolean }) => !value)
 
-  const containesValidationError: boolean = elementsTracked.some(
+  // Check if validation errors exist
+  const containesValidationError: boolean = Object.values(formItemValues).some(
     ({ isValid }: { isValid: boolean }) => !isValid
   )
 
+  // update specific field value
+  // This function is passed to the Children Component
+  // and will be used if a field is required and or should be validated
   const updateRequiredFieldValue = ({ id, value }: IdValueProps): void => {
     if (
       !!formItemValues[id] &&
@@ -94,13 +104,10 @@ export const useFormFieldsValidation = ({
     const validation: InputTypes | Function =
       validationType || (type in formValidation && type) || 'text'
 
-    if (!shouldValidate) {
-      return true
-    }
-
-    if (!shouldValidate && isRequired) {
-      return !!value
-    }
+    // TODO allow skipping of validation and still being required
+    // if (!shouldValidate && isRequired) {
+    //   return !!value
+    // }
 
     if (isTouched && (shouldValidate || isRequired)) {
       // Run a validation check on the input

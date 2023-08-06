@@ -50,7 +50,7 @@ type dateValidation =
 type textValidationTypes = 'email' | 'password' | 'text' | Function
 
 interface FormFieldEventHandlers<T> {
-  onChange?: (e: ChangeEvent, v: string | number | boolean) => void
+  onChange?: (e: ChangeEvent | Event, v: string | number | boolean) => void
   onClick?: (e: MouseEvent, v: string | number | boolean) => void
   onBlur?: FocusEventHandler<T>
 }
@@ -61,7 +61,7 @@ export interface FormPropTypes {
    * A group of form elements
    * @TODO Create TextArea, Select, Option, Radio
    */
-  children: ReactElement[] | ReactElement
+  children: ReactElement[]
   onSubmit: (event: FormEvent<HTMLFormElement>, isSuccess: boolean) => void
   hasError?: boolean
   isSuccess?: boolean
@@ -225,6 +225,6 @@ export interface CalendarWrapperProps {
   showTwoMonths?: boolean
   startDate: Date
   value?: string
-  onChange?: FormFieldEventHandlers<HTMLInputElement>['onChange']
+  onChange: (v: string) => void
   monthAndYearAreSelectable?: boolean
 }

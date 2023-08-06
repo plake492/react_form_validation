@@ -1,14 +1,14 @@
-import * as React from 'react';
-import { checkIfAnyReactComponentType } from '../../utils/detectReactComponents';
-import { forceArray } from '../../utils/helpers';
+import * as React from 'react'
+import { checkIfAnyReactComponentType } from '../../utils/detectReactComponents'
+import { forceArray } from '../../utils/helpers'
 
 export default function FieldLabel(props: { [key: string]: any }) {
   // Remove any non DOM attributes from the props before spreading
-  const { children, el, isRequired, ...rest } = props;
+  const { children, el, isRequired, ...rest } = props
 
-  const Component: keyof JSX.IntrinsicElements = el ?? 'label';
+  const Component: keyof JSX.IntrinsicElements = el ?? 'label'
 
-  const childrenAsArray: (string | React.ReactElement)[] = forceArray(children);
+  const childrenAsArray: (string | React.ReactElement)[] = forceArray(children)
 
   return (
     <>
@@ -19,13 +19,13 @@ export default function FieldLabel(props: { [key: string]: any }) {
               child
             ) : (
               <Component {...rest}>
-                {isRequired && <span>*</span>}
                 {child}
+                {isRequired && <span>*</span>}
               </Component>
             )}
           </React.Fragment>
         )
       )}
     </>
-  );
+  )
 }

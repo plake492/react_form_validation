@@ -28,6 +28,7 @@ export default function Checkbox({
   columnClass,
   fieldId,
   styles,
+  name,
 }: CheckboxPropTypes) {
   // Set up function for handling styles
   const bem: Function = useBemify('checkbox')
@@ -56,10 +57,17 @@ export default function Checkbox({
       )}
       style={{ ...(!!styles ? (styles as React.CSSProperties) : {}) }}
     >
+      <div className={bem('label')}>
+        <FieldLabel htmlFor={fieldId} isRequired={isRequired}>
+          {label}
+        </FieldLabel>
+        <div className={bem('message-wrapper')}>{messages}</div>
+      </div>
       <div className={bem('field-wrapper')}>
         <input
           type={type}
           id={fieldId}
+          name={name}
           className={bem('field')}
           aria-label={ariaLabel || placeholder}
           placeholder={placeholder}
@@ -70,12 +78,6 @@ export default function Checkbox({
           {...events}
         />
         <div className={bem('box')}></div>
-      </div>
-      <div className={bem('label')}>
-        <FieldLabel htmlFor={fieldId} isRequired={isRequired}>
-          {label}
-        </FieldLabel>
-        <div className={bem('message-wrapper')}>{messages}</div>
       </div>
     </div>
   )

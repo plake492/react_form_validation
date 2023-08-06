@@ -33,6 +33,7 @@ export default function Textarea({
   columnClass,
   fieldId,
   styles,
+  name,
 }: TextAreaPropTypes): JSX.Element {
   // Set up function for handling styles
   const bem: Function = useBemify('textarea')
@@ -88,6 +89,7 @@ export default function Textarea({
         <textarea
           className={bem('field')}
           id={fieldId}
+          name={name}
           aria-label={ariaLabel || placeholder}
           placeholder={placeholder}
           readOnly={isReadOnly}

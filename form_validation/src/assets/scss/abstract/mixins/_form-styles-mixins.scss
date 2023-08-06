@@ -158,6 +158,7 @@
     line-height: var(--#{$prefix}-label-line-height);
     height: var(--#{$prefix}-label-height);
     color: var(--#{$prefix}-label-text-color);
+    text-transform: capitalize; //! Move this to variables
   }
 
   &__container {
