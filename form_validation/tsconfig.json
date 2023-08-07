@@ -1,16 +1,19 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
+    "module": "esnext",
+    "outDir": "./dist/esm",
     "sourceMap": true,
     "noImplicitAny": true,
-    "module": "commonjs",
     "target": "es5",
     "jsx": "react",
     "allowJs": true,
-    "moduleResolution": "node",
     "declaration": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
     "removeComments": true,
-    "typeRoots": ["./node_modules/@types"]
+    "typeRoots": ["./node_modules/@types"],
+    "rootDir": "./src",
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["src/index.tsx"],
   "exclude": ["src/_develop"]

@@ -1,15 +1,17 @@
 import * as React from 'react'
 
-import MockSignup from './components/TestComponents/MockSignup'
-import TestForm from './components/TestComponents/TestForm'
+import { MockSignup } from './components/MockSignup'
+import { MockUpdatePasswordWithOldPassword } from './components/MockUpdatePasswordWithOldPassword'
 
 export default function App() {
   return (
-    <main>
-      <MockSignup />
-      {/* <div style={{ backgroundColor: '#222222', padding: '4rem 0' }}>
-        <TestForm />
-      </div> */}
+    <main className="bg-grey-30">
+      <section style={{ backgroundColor: '#222' }}>
+        <MockSignup />
+      </section>
+      <section style={{ backgroundColor: '#000' }}>
+        <MockUpdatePasswordWithOldPassword />
+      </section>
     </main>
   )
 }

@@ -11,7 +11,7 @@ const MessageWrapper = function ({ children }: { children: React.ReactNode }) {
           cy="12.5"
           r="11.75"
           stroke="currentColor"
-          stroke-width="1.5"
+          strokeWidth="1.5"
         />
         <line
           x1="20.6777"
@@ -19,8 +19,8 @@ const MessageWrapper = function ({ children }: { children: React.ReactNode }) {
           x2="4.23744"
           y2="20.6777"
           stroke="currentColor"
-          stroke-width="1.75"
-          stroke-linecap="round"
+          strokeWidth="1.75"
+          strokeLinecap="round"
         />
       </svg>
       {children}

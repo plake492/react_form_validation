@@ -1,10 +1,13 @@
 import * as React from 'react'
 
-export type HTMLFormEventElements = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+export type HTMLFormEventElements =
+  | HTMLInputElement
+  | HTMLTextAreaElement
+  | HTMLSelectElement
 
 interface FormEventPropTypes<T> {
-  onChange: (v: string | number | boolean, e?: React.ChangeEvent) => void
-  onClick: (v: string | number | boolean, e?: React.MouseEvent) => void
+  onChange: (e: React.ChangeEvent, v: string | number | boolean) => void
+  onClick: (e: React.MouseEvent, v: string | number | boolean) => void
   onBlur: React.FocusEventHandler<T>
 }
 
@@ -14,10 +17,10 @@ export const formEvents = <T extends HTMLFormEventElements>({
   onBlur,
 }: FormEventPropTypes<T>) => {
   const handleOnClick = (event: React.MouseEvent<T>): void =>
-    onClick && onClick((event.target as T).value, event)
+    onClick && onClick(event, (event.target as T).value)
 
   const handleOnChange = (event: React.ChangeEvent<T>): void =>
-    onChange && onChange((event.target as T).value, event)
+    onChange && onChange(event, (event.target as T).value)
 
   return {
     onChange: handleOnChange,

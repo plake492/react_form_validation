@@ -38,12 +38,15 @@ export default function DatePicker({
   styles,
   monthAndYearAreSelectable,
   hideLabel,
+  name,
 }: DatePickerTypes): JSX.Element {
   const [showDatePicker, setShowDatePicker] = React.useState<boolean>(false)
+  const [calendarValue, setCalendarValue] = React.useState<string>('')
 
   const bem: Function = useBemify('datepicker')
 
-  const iconRef = React.useRef<HTMLDivElement>()
+  const iconRef = React.useRef<HTMLDivElement>(null)
+  const dateInputRef = React.useRef<HTMLInputElement>(null)
 
   const handleKeydown = (e: KeyboardEvent) => {
     if (document.activeElement === iconRef.current && e.key === 'Enter') {
@@ -53,6 +56,21 @@ export default function DatePicker({
       setShowDatePicker(false)
     }
   }
+
+  // This will allow the calendar to emit an event object
+  React.useEffect(() => {
+    // Create a new change event
+    const event: Event = new Event('change', { bubbles: true })
+    // Add the calendar value to the input ref
+    dateInputRef.current.value = calendarValue
+    // Add the name prop to the input ref
+    dateInputRef.current.name = name
+    // Connect the input with the event
+    dateInputRef.current.dispatchEvent(event)
+    // Call the onChange callback with the newly created event
+    // and the direct value from the calendar
+    onChange(event, calendarValue)
+  }, [calendarValue])
 
   React.useEffect(() => {
     window.addEventListener('keydown', handleKeydown)
@@ -108,7 +126,10 @@ export default function DatePicker({
         )}
       >
         <input
-          ref={forwardRef}
+          ref={(el: HTMLInputElement) => {
+            if (forwardRef) forwardRef.current = el
+            dateInputRef.current = el
+          }}
           className={bem('field')}
           type="text"
           id={fieldId}
@@ -120,6 +141,7 @@ export default function DatePicker({
           required={isRequired}
           autoFocus={shouldAutoFocus}
           autoComplete={autocomplete}
+          name={name}
           {...events}
         />
         <div
@@ -150,7 +172,7 @@ export default function DatePicker({
             showTwoMonths={showTwoMonths}
             startDate={startDate}
             value={value}
-            onChange={onChange}
+            onChange={(v) => setCalendarValue(v)}
             monthAndYearAreSelectable={monthAndYearAreSelectable}
           />
         ) : null}

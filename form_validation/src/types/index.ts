@@ -50,8 +50,8 @@ type dateValidation =
 type textValidationTypes = 'email' | 'password' | 'text' | Function
 
 interface FormFieldEventHandlers<T> {
-  onChange?: (v: string | number | boolean, e?: ChangeEvent) => void
-  onClick?: (v: string | number | boolean, e?: MouseEvent) => void
+  onChange?: (e: ChangeEvent | Event, v: string | number | boolean) => void
+  onClick?: (e: MouseEvent, v: string | number | boolean) => void
   onBlur?: FocusEventHandler<T>
 }
 
@@ -61,7 +61,7 @@ export interface FormPropTypes {
    * A group of form elements
    * @TODO Create TextArea, Select, Option, Radio
    */
-  children: ReactElement[] | ReactElement
+  children: ReactElement[]
   onSubmit: (event: FormEvent<HTMLFormElement>, isSuccess: boolean) => void
   hasError?: boolean
   isSuccess?: boolean
@@ -78,6 +78,7 @@ export interface FormPropTypes {
   colorTheme?: 'dark' | 'light'
   styleOptions?: { [key: string]: string }
   submitButton?: ReactElement
+  disbalePasswordConfirmation?: boolean
   /**
    *
    * A form id's with a password field that should be excluded from the
@@ -85,12 +86,13 @@ export interface FormPropTypes {
    * to a form contianing (Old | Previous) password, New password, and
    * Confirm new Password fields, where the (Old | Previous) password would be excluded
    */
-  excludeFieldFromConfirmPassword?: string | undefined
+  excludeFieldFromConfirmPassword?: string[] | string | undefined
 }
 
 export interface FormElementTypes<T> extends FormFieldEventHandlers<T> {
   label: formFieldLabelTyps
   id: string
+  name?: string
   placeholder?: string
   ariaLabel?: string
   wrapperClasses?: string
@@ -224,6 +226,6 @@ export interface CalendarWrapperProps {
   showTwoMonths?: boolean
   startDate: Date
   value?: string
-  onChange?: FormFieldEventHandlers<HTMLInputElement>['onChange']
+  onChange: (v: string) => void
   monthAndYearAreSelectable?: boolean
 }

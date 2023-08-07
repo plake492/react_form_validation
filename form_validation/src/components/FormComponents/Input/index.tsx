@@ -1,12 +1,12 @@
-import * as React from 'react';
-import { useBemify } from '../../../hooks/useBemify';
-import { checkIfAnyReactComponentType } from '../../../utils/detectReactComponents';
+import * as React from 'react'
+import { useBemify } from '../../../hooks/useBemify'
+import { checkIfAnyReactComponentType } from '../../../utils/detectReactComponents'
 
-import FieldLabel from '../../BaseComponents/FieldLabel';
-import SuccessIcon from '../../BaseComponents/SuccessIcon';
-import { useFormFieldMessages } from '../../../hooks/useFormFieldMessages';
-import { InputPropTypes } from '../../../types';
-import { formEvents } from '../../../utils/formEvents';
+import FieldLabel from '../../BaseComponents/FieldLabel'
+import SuccessIcon from '../../BaseComponents/SuccessIcon'
+import { useFormFieldMessages } from '../../../hooks/useFormFieldMessages'
+import { InputPropTypes } from '../../../types'
+import { formEvents } from '../../../utils/formEvents'
 
 function EyeOpened() {
   return (
@@ -28,7 +28,7 @@ function EyeOpened() {
         fill="currentColor"
       />
     </svg>
-  );
+  )
 }
 
 function EyeClosed() {
@@ -47,7 +47,7 @@ function EyeClosed() {
         fill="currentColor"
       />
     </svg>
-  );
+  )
 }
 
 export default function Input({
@@ -85,25 +85,26 @@ export default function Input({
   forwardRef,
   styles,
   hideLabel,
+  name,
 }: InputPropTypes): JSX.Element {
-  const [showPassword, setShowPassword] = React.useState<boolean>(false);
+  const [showPassword, setShowPassword] = React.useState<boolean>(false)
   // Set up function for handling styles
-  const bem: Function = useBemify('input');
+  const bem: Function = useBemify('input')
 
   // Get messages as needed
   const messages: JSX.Element = useFormFieldMessages({
     children,
     message,
     bem,
-  });
+  })
 
   const events: {} = formEvents<HTMLInputElement>({
     onChange,
     onClick,
     onBlur,
-  });
+  })
 
-  const inputType: string = type === 'password' && showPassword ? 'text' : type;
+  const inputType: string = type === 'password' && showPassword ? 'text' : type
 
   return (
     <div
@@ -160,6 +161,7 @@ export default function Input({
           className={bem('field')}
           type={inputType}
           id={fieldId}
+          name={name}
           aria-label={ariaLabel ?? placeholder}
           placeholder={placeholder}
           readOnly={isReadOnly}
@@ -208,5 +210,5 @@ export default function Input({
       </div>
       <div className={bem('message-wrapper')}>{messages}</div>
     </div>
-  );
+  )
 }

@@ -10,6 +10,8 @@ $prefix: checkbox;
   position: relative;
   margin-bottom: var(--checkbox-margin-bottom);
   display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
   align-items: start;
   gap: 1rem;
 }

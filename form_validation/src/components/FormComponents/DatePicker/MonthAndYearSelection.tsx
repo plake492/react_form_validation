@@ -21,7 +21,7 @@ export default function MonthAndYearSelection({
             label: monthsShort[i],
             value: i.toString(),
           }))}
-          onChange={(v: string) => {
+          onChange={(_, v: string) => {
             setCurrentFocusedDate(
               new Date(parseInt(format(date, 'yyyy')), parseInt(v))
             )
@@ -43,7 +43,7 @@ export default function MonthAndYearSelection({
               selected: year === format(date, 'yyyy'),
             }
           })}
-          onChange={(v: string) => {
+          onChange={(_, v: string) => {
             setCurrentFocusedDate(
               new Date(parseInt(v), parseInt(format(date, 'MM')) - 1)
             )

@@ -1,0 +1,9 @@
+{
+  "name": "react_form_validation",
+  "version": "1.0.0",
+  "repository": "https://github.com/plake492/react_form_validation.git",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
